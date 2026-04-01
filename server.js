@@ -52,8 +52,10 @@ app.use('/shop',   publicRoutes);
 
 // ─── ROOT REDIRECT ───────────────────────────────────────────────────────────
 app.get('/', (req, res) => {
+  // If admin is logged in, go to admin panel
   if (req.session.isAdmin) return res.redirect('/admin');
-  res.redirect('/login');
+  // Otherwise, show the shop
+  res.redirect('/shop');  // ← Now visitors see products
 });
 
 // ─── 404 HANDLER ─────────────────────────────────────────────────────────────
@@ -79,6 +81,5 @@ app.listen(PORT, () => {
   console.log('\n  Credentials: admin / techpoint2025');
   console.log('  (Change in routes/auth.js before deploying)\n');
 });
-javascript
 const setupRouter = require('./routes/setup');
 app.use('/setup', setupRouter);

@@ -1,0 +1,182 @@
+<%- include('../partials/layout-top', { title: isEdit ? 'Edit Item' : 'Add Item', data, username, messages }) %>
+
+<div class="max-w-2xl">
+
+  <!-- Back link -->
+  <a href="/admin/products" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand-400 transition-colors mb-6">
+    ← Back to Products
+  </a>
+
+  <div class="card card-glow rounded-2xl overflow-hidden">
+    <div class="px-8 py-5 border-b" style="border-color:rgba(56,189,248,0.08);">
+      <h2 class="font-semibold text-white"><%= isEdit ? '✏️ Edit: ' + product.name : '➕ New Item' %></h2>
+      <p class="text-xs text-slate-600 mt-1">Fields marked * are required</p>
+    </div>
+
+    <form
+      method="POST"
+      action="<%= isEdit ? '/admin/products/edit/' + product.id : '/admin/products/add' %>"
+      enctype="multipart/form-data"
+      class="px-8 py-7 space-y-6"
+    >
+
+      <!-- Name -->
+      <div>
+        <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Item Name *</label>
+        <input
+          type="text" name="name" required
+          value="<%= isEdit ? product.name : '' %>"
+          placeholder="e.g. HP EliteBook 840 G8"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm"
+        />
+      </div>
+
+      <!-- Type + Category row -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Type *</label>
+          <select name="type" id="typeSelect" class="input-field w-full px-3 py-3 rounded-xl text-sm" onchange="toggleStock()">
+            <option value="product" <%= !isEdit || product.type === 'product' ? 'selected' : '' %>>📦 Product</option>
+            <option value="service" <%= isEdit && product.type === 'service' ? 'selected' : '' %>>🔧 Service</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Category *</label>
+          <select name="categoryId" class="input-field w-full px-3 py-3 rounded-xl text-sm">
+            <% data.categories.forEach(cat => { %>
+              <option value="<%= cat.id %>" <%= isEdit && product.categoryId === cat.id ? 'selected' : '' %>><%= cat.icon %> <%= cat.name %></option>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+
+      <!-- Price + Stock row -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">
+            Price (<%= data.settings.currencySymbol %>) *
+          </label>
+          <input
+            type="number" name="price" required min="0" step="0.01"
+            value="<%= isEdit ? product.price : '' %>"
+            placeholder="0.00"
+            class="input-field w-full px-4 py-3 rounded-xl text-sm font-mono"
+          />
+        </div>
+        <div id="stockField">
+          <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Stock Quantity</label>
+          <input
+            type="number" name="stock" min="0"
+            value="<%= isEdit && product.stock !== null ? product.stock : '' %>"
+            placeholder="e.g. 10"
+            class="input-field w-full px-4 py-3 rounded-xl text-sm font-mono"
+          />
+        </div>
+      </div>
+
+      <!-- SKU -->
+      <div>
+        <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">SKU / Item Code</label>
+        <input
+          type="text" name="sku"
+          value="<%= isEdit ? product.sku : '' %>"
+          placeholder="e.g. LAP-HP-001"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm font-mono"
+        />
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Description</label>
+        <textarea
+          name="description" rows="3"
+          placeholder="Brief description of the item or service…"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm resize-none"
+        ><%= isEdit ? product.description : '' %></textarea>
+      </div>
+
+      <!-- Image Upload -->
+      <div>
+        <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Product Image</label>
+        <div class="flex items-start gap-5">
+          <!-- Current Image Preview -->
+          <% if (isEdit && product.image) { %>
+            <div class="flex-shrink-0">
+              <img src="<%= product.image %>" id="imgPreview"
+                   class="w-20 h-20 rounded-xl object-cover"
+                   style="border:1px solid rgba(56,189,248,0.2);" />
+            </div>
+          <% } else { %>
+            <div class="flex-shrink-0 w-20 h-20 rounded-xl flex items-center justify-center text-2xl"
+                 style="background:rgba(56,189,248,0.05);border:2px dashed rgba(56,189,248,0.15);"
+                 id="imgPlaceholder">
+              🖼️
+            </div>
+            <img id="imgPreview" class="hidden w-20 h-20 rounded-xl object-cover" style="border:1px solid rgba(56,189,248,0.2);" />
+          <% } %>
+
+          <!-- Upload input -->
+          <div class="flex-1">
+            <label for="imageInput" class="cursor-pointer flex flex-col items-center justify-center w-full py-5 rounded-xl transition-colors hover:border-brand-400"
+                   style="border:2px dashed rgba(56,189,248,0.15);background:rgba(56,189,248,0.03);">
+              <span class="text-2xl mb-2">📤</span>
+              <span class="text-sm text-slate-400">Click to upload image</span>
+              <span class="text-xs text-slate-600 mt-1">PNG, JPG, WEBP up to 5MB</span>
+            </label>
+            <input type="file" name="image" id="imageInput" accept="image/*" class="hidden" onchange="previewImage(event)" />
+            <p id="fileName" class="text-xs text-slate-600 mt-2"></p>
+          </div>
+        </div>
+        <% if (isEdit && product.image) { %>
+          <p class="text-xs text-slate-600 mt-2">Upload a new image to replace the current one.</p>
+        <% } %>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex items-center gap-3 pt-2 border-t" style="border-color:rgba(56,189,248,0.08);">
+        <button type="submit" class="btn-primary px-8 py-3 rounded-xl text-white font-semibold text-sm">
+          <%= isEdit ? '💾 Save Changes' : '✅ Add Item' %>
+        </button>
+        <a href="/admin/products" class="px-6 py-3 rounded-xl text-sm text-slate-400 hover:text-white transition-colors" style="background:rgba(255,255,255,0.04);">
+          Cancel
+        </a>
+        <% if (isEdit) { %>
+          <form method="POST" action="/admin/products/delete/<%= product.id %>" class="ml-auto"
+                onsubmit="return confirm('Permanently delete this item?')">
+            <button type="submit" class="btn-danger px-5 py-3 rounded-xl text-sm font-medium">🗑️ Delete Item</button>
+          </form>
+        <% } %>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function toggleStock() {
+    const type = document.getElementById('typeSelect').value;
+    const stockField = document.getElementById('stockField');
+    stockField.style.opacity = type === 'service' ? '0.3' : '1';
+    stockField.querySelector('input').disabled = type === 'service';
+  }
+
+  function previewImage(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const preview = document.getElementById('imgPreview');
+    const placeholder = document.getElementById('imgPlaceholder');
+    const fileNameEl = document.getElementById('fileName');
+    const reader = new FileReader();
+    reader.onload = e => {
+      preview.src = e.target.result;
+      preview.classList.remove('hidden');
+      if (placeholder) placeholder.classList.add('hidden');
+    };
+    reader.readAsDataURL(file);
+    if (fileNameEl) fileNameEl.textContent = '📎 ' + file.name;
+  }
+
+  // Run on load for edit page
+  toggleStock();
+</script>
+
+<%- include('../partials/layout-bottom') %>

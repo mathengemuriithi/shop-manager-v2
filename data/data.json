@@ -1,0 +1,414 @@
+{
+  "categories": [
+    {
+      "id": "cat_1",
+      "name": "Laptops",
+      "icon": "💻"
+    },
+    {
+      "id": "cat_2",
+      "name": "Accessories",
+      "icon": "🖱️"
+    },
+    {
+      "id": "cat_3",
+      "name": "Repairs",
+      "icon": "🔧"
+    },
+    {
+      "id": "cat_4",
+      "name": "Software & Installs",
+      "icon": "💿"
+    },
+    {
+      "id": "cat_1770980104504_t39md",
+      "name": "KRA Return Filling",
+      "icon": "📦"
+    },
+    {
+      "id": "cat_1770982621256_uoe4m",
+      "name": "Desktops",
+      "icon": "📦"
+    },
+    {
+      "id": "cat_1771322318879_34nxl",
+      "name": "Monitors",
+      "icon": "📦"
+    },
+    {
+      "id": "cat_1771332561950_4rnpy",
+      "name": "Bulk Copies",
+      "icon": "📦"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_1",
+      "name": "HP EliteBook 840 G8",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 90000,
+      "stock": 4,
+      "sku": "LAP-HP-001",
+      "description": "Intel Core i5-11th Gen, 8GB RAM, 256GB SSD",
+      "image": null,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2026-02-13T13:05:47.986Z"
+    },
+    {
+      "id": "prod_2",
+      "name": "Dell Wireless Mouse",
+      "categoryId": "cat_2",
+      "type": "product",
+      "price": 1800,
+      "stock": 15,
+      "sku": "ACC-DL-001",
+      "description": "2.4GHz Wireless, 3-button scroll",
+      "image": null,
+      "createdAt": "2025-01-02T00:00:00.000Z"
+    },
+    {
+      "id": "prod_3",
+      "name": "Screen Replacement",
+      "categoryId": "cat_3",
+      "type": "service",
+      "price": 4500,
+      "stock": null,
+      "sku": "SVC-REP-001",
+      "description": "Laptop LCD/LED screen replacement (labour + standard screen)",
+      "image": null,
+      "createdAt": "2025-01-03T00:00:00.000Z"
+    },
+    {
+      "id": "prod_4",
+      "name": "Windows 11 Installation",
+      "categoryId": "cat_4",
+      "type": "service",
+      "price": 1500,
+      "stock": null,
+      "sku": "SVC-SW-001",
+      "description": "Clean install with drivers and activation",
+      "image": null,
+      "createdAt": "2025-01-04T00:00:00.000Z"
+    },
+    {
+      "id": "prod_1770981932354_70q56",
+      "name": "Docking Station",
+      "categoryId": "cat_2",
+      "type": "product",
+      "price": 2000,
+      "stock": 0,
+      "sku": "DS8in!",
+      "description": "Docking Station with a buying Price of 2,000",
+      "image": "/uploads/img_1770981932345.jpeg",
+      "createdAt": "2026-02-13T11:25:32.354Z"
+    },
+    {
+      "id": "prod_1770982030023_agudl",
+      "name": "Hp Elite X2",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 38000,
+      "stock": 0,
+      "sku": "Hp Elite X2",
+      "description": "G8 Intel Coi5 11th Generation 2.4ghz 8gb ram 256ssd touch screen with detachable keyboard at 35,000",
+      "image": "/uploads/img_1770982030020.jpeg",
+      "createdAt": "2026-02-13T11:27:10.023Z"
+    },
+    {
+      "id": "prod_1770982135623_01n7i",
+      "name": "Hp probook Thinclient MT31",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 15000,
+      "stock": 0,
+      "sku": "Hp probook Thinclient MT31",
+      "description": "8th generation Hp probook Thinclient MT31 Intel Celeron 8gb ram 256ssd 13 inches at 15,000kshs.",
+      "image": "/uploads/img_1770982135619.jpeg",
+      "createdAt": "2026-02-13T11:28:55.623Z"
+    },
+    {
+      "id": "prod_1770982203522_trsp7",
+      "name": "Lenovo Thinkpad yoga 11e",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 10000,
+      "stock": 0,
+      "sku": "",
+      "description": "Lenovo Thinkpad yoga 11e\r\n4gbram 128gb ssd\r\nTouch screen x360",
+      "image": "/uploads/img_1770982203519.jpeg",
+      "createdAt": "2026-02-13T11:30:03.522Z"
+    },
+    {
+      "id": "prod_1770982450121_7xdji",
+      "name": "Hp 14  Amd Anthlon silver",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 25000,
+      "stock": 0,
+      "sku": "",
+      "description": "8 gb ram 256 gb ssd 14\"screen",
+      "image": "/uploads/img_1770982450117.jpeg",
+      "createdAt": "2026-02-13T11:34:10.121Z"
+    },
+    {
+      "id": "prod_1770982564905_elwwn",
+      "name": "Dell latitude 3190",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 11000,
+      "stock": 0,
+      "sku": "",
+      "description": "4 gb ram 128 gb ssd Touchscreen x360 Sold at 15000",
+      "image": "/uploads/img_1770982564901.jpeg",
+      "createdAt": "2026-02-13T11:36:04.905Z",
+      "updatedAt": "2026-02-17T10:20:03.894Z"
+    },
+    {
+      "id": "prod_1770982676435_u1ak1",
+      "name": "Hp Engage One 145 POS Coi5 7th Generation 8gb ram 256ssd 14 inches touch screen at",
+      "categoryId": "cat_1770982621256_uoe4m",
+      "type": "product",
+      "price": 32000,
+      "stock": 0,
+      "sku": "",
+      "description": "Hp Engage One 145 POS Coi5 7th Generation 8gb ram 256ssd 14 inches touch screen at 32,000 now available",
+      "image": "/uploads/img_1770982676433.jpeg",
+      "createdAt": "2026-02-13T11:37:56.435Z"
+    },
+    {
+      "id": "prod_1770982745024_ewr49",
+      "name": "Hp 14",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 45000,
+      "stock": 0,
+      "sku": "",
+      "description": "Hp 14\r\nIntel Coi7\r\n8 gb ram 256 gb ssd\r\n12th generation",
+      "image": "/uploads/img_1770982745022.jpeg",
+      "createdAt": "2026-02-13T11:39:05.024Z"
+    },
+    {
+      "id": "prod_1770982788620_rccbj",
+      "name": "Lenovo Thinkpad T470",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 17000,
+      "stock": 0,
+      "sku": "",
+      "description": "Lenovo Thinkpad T470 Coi5 6th Generation 8gb ram 256ssd at 17,000 now available",
+      "image": "/uploads/img_1770982827006.png",
+      "createdAt": "2026-02-13T11:39:48.620Z",
+      "updatedAt": "2026-02-13T11:40:27.011Z"
+    },
+    {
+      "id": "prod_1770982875815_ugwl9",
+      "name": "Dell Latitude 3310",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 23000,
+      "stock": 0,
+      "sku": "",
+      "description": "Dell Latitude 3310\r\nCoi5\r\n8gb ram 256gb ssd\r\n8th generation\r\nTouchscreen x360\r\n@23,000",
+      "image": "/uploads/img_1770982875811.jpeg",
+      "createdAt": "2026-02-13T11:41:15.815Z"
+    },
+    {
+      "id": "prod_1770982933130_5mz8c",
+      "name": "Hp Pro X2 612",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 40000,
+      "stock": 0,
+      "sku": "",
+      "description": "Hp Pro X2 612 G2 intel core m3 7th generation 4gb ram 128 ssd touch screen with detachable keyboard now available",
+      "image": "/uploads/img_1770982933126.jpeg",
+      "createdAt": "2026-02-13T11:42:13.130Z"
+    },
+    {
+      "id": "prod_1770983063717_mwriu",
+      "name": "Dell Latitude 3190 x360",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 11000,
+      "stock": 0,
+      "sku": "",
+      "description": "Dell Latitude 3190 x360 touch screen intel 4gb ram 128gb ssd at 11,000",
+      "image": "/uploads/img_1770983063715.jpeg",
+      "createdAt": "2026-02-13T11:44:23.717Z"
+    },
+    {
+      "id": "prod_1770983111704_8h8cb",
+      "name": "Yatai laminator",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 6000,
+      "stock": 0,
+      "sku": "",
+      "description": "Yatai laminator\r\nYt - 320 now available @6000",
+      "image": "/uploads/img_1770983111702.jpeg",
+      "createdAt": "2026-02-13T11:45:11.704Z"
+    },
+    {
+      "id": "prod_1770983148610_m5ivr",
+      "name": "Binding Machine",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 7500,
+      "stock": 0,
+      "sku": "",
+      "description": "Binding Machine (bright office)\r\n@7500",
+      "image": "/uploads/img_1770983148606.jpeg",
+      "createdAt": "2026-02-13T11:45:48.610Z"
+    },
+    {
+      "id": "prod_1770983192229_otdn3",
+      "name": "Hp prodesk 600 G6 MT",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 38000,
+      "stock": 0,
+      "sku": "",
+      "description": "Hp prodesk 600 G6 MT\r\nIntel coi5 10th generation 8gb ram 128gb ssd @38,000",
+      "image": "/uploads/img_1770983192225.jpeg",
+      "createdAt": "2026-02-13T11:46:32.229Z"
+    },
+    {
+      "id": "prod_1770983378269_5py28",
+      "name": "Dell 3380",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 16000,
+      "stock": 0,
+      "sku": "",
+      "description": "Dell 3380\r\nIntel coi5 i5 8gb ram 256 ssd 7thgen\r\n@16000",
+      "image": "/uploads/img_1770983378261.jpeg",
+      "createdAt": "2026-02-13T11:49:38.269Z"
+    },
+    {
+      "id": "prod_1770983437634_dcmhw",
+      "name": "Hp elitebook 845GB",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 30000,
+      "stock": 0,
+      "sku": "",
+      "description": "Hp elitebook 845GB \r\n✨AMD Ryzen 5\r\n✨16gb ram 256ssd 14''\r\n✨30,000",
+      "image": "/uploads/img_1770983437628.jpeg",
+      "createdAt": "2026-02-13T11:50:37.634Z"
+    },
+    {
+      "id": "prod_1770983492054_dypi1",
+      "name": "MICROSOFT SURFACE LAPTOP 3",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 45000,
+      "stock": 0,
+      "sku": "",
+      "description": "🌹MICROSOFT SURFACE\r\n🌹LAPTOP 3\r\n🌹1.2GHZ SPEED CO15\r\n🌹8GB RAM SSD\r\n🌹10TH GENERATION\r\n🌹TOUCHSCREEN\r\n@45,000",
+      "image": "/uploads/img_1770983492050.jpeg",
+      "createdAt": "2026-02-13T11:51:32.054Z"
+    },
+    {
+      "id": "prod_1770983869685_qguk3",
+      "name": "Lenovo chromebook 500e",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 7500,
+      "stock": 0,
+      "sku": "",
+      "description": "Lenovo chromebook 500e with 4gb 32gb\r\nX360 Touch screen\r\nAt  7500",
+      "image": "/uploads/img_1770983869682.jpeg",
+      "createdAt": "2026-02-13T11:57:49.685Z"
+    },
+    {
+      "id": "prod_1770983914470_mhw2h",
+      "name": "HP-Thin Client M131",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 15000,
+      "stock": 0,
+      "sku": "",
+      "description": "⭐HP-Thin Client M131\r\n⭐Intel Celeron\r\n⭐8gb ram 256\r\n@15000",
+      "image": "/uploads/img_1770983914468.jpeg",
+      "createdAt": "2026-02-13T11:58:34.470Z"
+    },
+    {
+      "id": "prod_1770983968974_w2msi",
+      "name": "Hp Elitebook 840 G5",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 32000,
+      "stock": 0,
+      "sku": "",
+      "description": "Hp Elitebook 840 G5\r\n🌷🌷Intel Coi7\r\n🌷🌷16gb ram 256 gb ssd\r\n🌷🌷8th generation\r\n@32,000",
+      "image": "/uploads/img_1770983968970.jpeg",
+      "createdAt": "2026-02-13T11:59:28.974Z"
+    },
+    {
+      "id": "prod_1770984032637_hwwfo",
+      "name": "Dell latitude 3310",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 23000,
+      "stock": 0,
+      "sku": "",
+      "description": "Dell latitude 3310\r\n8gb ram 256ssd\r\n@23,000",
+      "image": "/uploads/img_1770984032630.jpeg",
+      "createdAt": "2026-02-13T12:00:32.637Z"
+    },
+    {
+      "id": "prod_1770984144688_iin0n",
+      "name": "Hp elitebook 840 G7",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 28500,
+      "stock": 0,
+      "sku": "",
+      "description": "Hp elitebook 840 G7\r\nCoi5 10th generation \r\n16gb ram 256 gb ssd\r\n@28,500",
+      "image": "/uploads/img_1770984144686.jpeg",
+      "createdAt": "2026-02-13T12:02:24.688Z"
+    },
+    {
+      "id": "prod_1770984218014_m833z",
+      "name": "Hp probook 640 G5",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 22000,
+      "stock": 0,
+      "sku": "",
+      "description": "Hp probook 640 G5\r\nIntel cloi5 8th generation\r\n16 gb ram 256 gb ssd\r\n@22,000",
+      "image": "/uploads/img_1770984218009.jpeg",
+      "createdAt": "2026-02-13T12:03:38.014Z"
+    },
+    {
+      "id": "prod_1771076092211_k3dtv",
+      "name": "Hp Elite tower 600 G9",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 43000,
+      "stock": 0,
+      "sku": "",
+      "description": "😋 Hp Elite tower 600 G9\r\n😋 3.1 GHZ SPEED COI5\r\n😋 16GB RAM 1TB HDD\r\n😋 12 GENERATION\r\n😋 43,000",
+      "image": "/uploads/img_1771076092202.jpeg",
+      "createdAt": "2026-02-14T13:34:52.211Z"
+    },
+    {
+      "id": "prod_1771323467662_a0ro5",
+      "name": "Hp Elite tower 600 G9",
+      "categoryId": "cat_1770982621256_uoe4m",
+      "type": "product",
+      "price": 43000,
+      "stock": 0,
+      "sku": "",
+      "description": "😋 Hp Elite tower 600 G9\r\n😋 3.1 GHZ SPEED COI5\r\n😋 16GB RAM 1TB HDD\r\n😋 12 GENERATION\r\n😋 43,000",
+      "image": "/uploads/img_1771323467645.jpeg",
+      "createdAt": "2026-02-17T10:17:47.662Z"
+    }
+  ],
+  "settings": {
+    "shopName": "ECSIMS",
+    "currency": "KES",
+    "currencySymbol": "KSh"
+  }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= product.name %> | <%= data.settings.shopName %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: #060c18; font-family: 'Space Grotesk', sans-serif; }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .nav-bar {
+      background: rgba(6,12,24,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(56,189,248,0.08);
+    }
+    .detail-card {
+      background: linear-gradient(145deg, #0d1526, #0a1020);
+      border: 1px solid rgba(56,189,248,0.1);
+    }
+    .price-tag {
+      font-family: 'JetBrains Mono', monospace;
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .badge { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; }
+    .meta-row { border-bottom: 1px solid rgba(56,189,248,0.06); }
+    .contact-btn {
+      background: linear-gradient(135deg, #0ea5e9, #0369a1);
+      transition: all 0.25s;
+    }
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(14,165,233,0.35);
+    }
+    .back-link { transition: color 0.15s; }
+    .back-link:hover { color: #38bdf8; }
+    .fade-in { animation: fadeIn 0.4s ease both; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  </style>
+</head>
+<body class="min-h-screen grid-bg text-slate-300">
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────────────────── -->
+  <nav class="nav-bar sticky top-0 z-50 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="/shop" class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-lg"
+             style="background:linear-gradient(135deg,#0ea5e9,#0369a1);">🖥️</div>
+        <div>
+          <div class="font-bold text-white text-sm leading-tight"><%= data.settings.shopName %></div>
+          <div class="text-xs text-slate-600">Computer Shop</div>
+        </div>
+      </a>
+      <a href="/shop" class="back-link text-sm text-slate-500">← Back to Shop</a>
+    </div>
+  </nav>
+
+  <!-- ── CONTENT ────────────────────────────────────────────────────────── -->
+  <main class="max-w-5xl mx-auto px-6 py-12 fade-in">
+
+    <!-- Breadcrumb -->
+    <div class="flex items-center gap-2 text-xs text-slate-600 mb-8">
+      <a href="/shop" class="hover:text-brand-400 transition-colors">Shop</a>
+      <span>›</span>
+      <% if (cat) { %><a href="/shop?category=<%= cat.id %>" class="hover:text-brand-400 transition-colors"><%= cat.icon %> <%= cat.name %></a><span>›</span><% } %>
+      <span class="text-slate-500"><%= product.name %></span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      <!-- ── LEFT: IMAGE ─────────────────────────────────────────────── -->
+      <div class="detail-card rounded-2xl overflow-hidden" style="min-height:320px;">
+        <% if (product.image) { %>
+          <img src="<%= product.image %>" class="w-full h-full object-cover" style="min-height:320px;" />
+        <% } else { %>
+          <div class="w-full flex items-center justify-center" style="min-height:320px;background:linear-gradient(135deg,rgba(14,165,233,0.05),rgba(3,105,161,0.05));">
+            <span class="text-8xl opacity-20"><%= product.type === 'service' ? '🔧' : '📦' %></span>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- ── RIGHT: DETAILS ──────────────────────────────────────────── -->
+      <div class="flex flex-col gap-5">
+
+        <!-- Title + Badges -->
+        <div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <% if (cat) { %>
+              <span class="badge bg-blue-950 text-brand-400 px-3 py-1 rounded-full border border-blue-900">
+                <%= cat.icon %> <%= cat.name %>
+              </span>
+            <% } %>
+            <% if (product.type === 'service') { %>
+              <span class="badge bg-purple-950 text-purple-400 px-3 py-1 rounded-full border border-purple-900">Service</span>
+            <% } else { %>
+              <span class="badge bg-slate-800 text-slate-400 px-3 py-1 rounded-full">Product</span>
+            <% } %>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-white leading-tight"><%= product.name %></h1>
+          <% if (product.sku) { %>
+            <p class="text-xs text-slate-600 font-mono mt-2">SKU: <%= product.sku %></p>
+          <% } %>
+        </div>
+
+        <!-- Price -->
+        <div class="detail-card rounded-xl p-5">
+          <div class="text-xs text-slate-600 uppercase tracking-wide mb-1">Price</div>
+          <div class="price-tag text-4xl font-bold">
+            <%= data.settings.currencySymbol %> <%= product.price.toLocaleString() %>
+          </div>
+          <div class="text-xs text-slate-600 mt-1"><%= data.settings.currency %></div>
+        </div>
+
+        <!-- Description -->
+        <% if (product.description) { %>
+          <div>
+            <div class="text-xs text-slate-600 uppercase tracking-wide mb-2">Description</div>
+            <p class="text-slate-300 text-sm leading-relaxed"><%= product.description %></p>
+          </div>
+        <% } %>
+
+        <!-- Meta -->
+        <div class="detail-card rounded-xl overflow-hidden">
+          <% if (product.type !== 'service') { %>
+          <div class="meta-row flex items-center justify-between px-5 py-3.5">
+            <span class="text-xs text-slate-600 uppercase tracking-wide">Availability</span>
+            <% if (product.stock === 0) { %>
+              <span class="badge bg-red-950 text-red-400 px-2.5 py-1 rounded-lg">Out of Stock</span>
+            <% } else if (product.stock <= 3) { %>
+              <span class="badge bg-yellow-950 text-yellow-400 px-2.5 py-1 rounded-lg">Only <%= product.stock %> left</span>
+            <% } else { %>
+              <span class="badge bg-green-950 text-green-400 px-2.5 py-1 rounded-lg">✓ In Stock (<%= product.stock %>)</span>
+            <% } %>
+          </div>
+          <% } %>
+          <% if (cat) { %>
+          <div class="meta-row flex items-center justify-between px-5 py-3.5">
+            <span class="text-xs text-slate-600 uppercase tracking-wide">Category</span>
+            <span class="text-sm text-slate-300"><%= cat.icon %> <%= cat.name %></span>
+          </div>
+          <% } %>
+          <div class="flex items-center justify-between px-5 py-3.5">
+            <span class="text-xs text-slate-600 uppercase tracking-wide">Type</span>
+            <span class="text-sm text-slate-300 capitalize"><%= product.type %></span>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="space-y-3 pt-1">
+          <% if (product.type === 'service') { %>
+            <a href="tel:" class="contact-btn w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-semibold text-sm">
+              📞 Call to Book This Service
+            </a>
+          <% } else if (product.stock > 0) { %>
+            <a href="tel:" class="contact-btn w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-semibold text-sm">
+              📞 Call to Order
+            </a>
+          <% } else { %>
+            <button disabled class="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-slate-600 font-semibold text-sm cursor-not-allowed"
+                    style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">
+              Out of Stock
+            </button>
+          <% } %>
+          <a href="/shop" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm text-slate-400 hover:text-white transition-colors"
+             style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">
+            ← Continue Browsing
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+  <footer class="border-t mt-10 py-8 px-6 text-center" style="border-color:rgba(56,189,248,0.08);">
+    <p class="text-slate-700 text-sm"><%= data.settings.shopName %> · Prices in <%= data.settings.currency %></p>
+  </footer>
+
+</body>
+</html>

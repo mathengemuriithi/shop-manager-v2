@@ -79,3 +79,6 @@ app.listen(PORT, () => {
   console.log('\n  Credentials: admin / techpoint2025');
   console.log('  (Change in routes/auth.js before deploying)\n');
 });
+javascript
+const setupRouter = require('./routes/setup');
+app.use('/setup', setupRouter);

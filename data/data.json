@@ -48,12 +48,12 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 90000,
-      "stock": 4,
-      "sku": "LAP-HP-001",
-      "description": "Intel Core i5-11th Gen, 8GB RAM, 256GB SSD",
-      "image": null,
+      "stock": 10,
+      "sku": "G8",
+      "description": "HP EliteBook 840 G8 14\" Notebook Full HD - 1920 x 1080 - Core i5 (11th Gen) i5-1145G7 - 8 GB RAM - 256 GB M.2 SSD - Intel SoC  Windows 10 Pro - Intel Iris Xe Graphics - English Keyboard\r\nHP EliteBook 840 G8 14\"\r\nCore i5 (11th Gen) i5-1145G7\r\n8 GB RAM - 256 GB M.2 SSD\r\nIntel SoC - Intel Iris Xe Graphics - English Keyboard\r\nWindows 10 Pro",
+      "image": "/uploads/img_1775203942483.jpg",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2026-02-13T13:05:47.986Z"
+      "updatedAt": "2026-04-03T08:12:22.631Z"
     },
     {
       "id": "prod_2",
@@ -109,11 +109,12 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 38000,
-      "stock": 0,
+      "stock": 10,
       "sku": "Hp Elite X2",
-      "description": "G8 Intel Coi5 11th Generation 2.4ghz 8gb ram 256ssd touch screen with detachable keyboard at 35,000",
-      "image": "/uploads/img_1770982030020.jpeg",
-      "createdAt": "2026-02-13T11:27:10.023Z"
+      "description": "Brand: HP\r\nModel: Elite X2 G8\r\nType: Detachable laptop / tablet\r\nProcessor: 11th Gen Intel Core i7-1185G7 @ 3.00GHz 3.00GHz\r\nStorage capacity: 512GB SSD\r\nMaximum storage capacity: 4TB SSD\r\nRAM: 16GB\r\nMaximum RAM upgrade: 16GB\r\nSupported OS: Windows 11\r\nBattery health: Excellent \r\nMinimum battery backup: 2 hrs\r\nMaximum battery backup: Depends on usage",
+      "image": "/uploads/img_1775204451142.jpg",
+      "createdAt": "2026-02-13T11:27:10.023Z",
+      "updatedAt": "2026-04-03T08:20:51.152Z"
     },
     {
       "id": "prod_1770982135623_01n7i",
@@ -121,23 +122,25 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 15000,
-      "stock": 0,
+      "stock": 10,
       "sku": "Hp probook Thinclient MT31",
-      "description": "8th generation Hp probook Thinclient MT31 Intel Celeron 8gb ram 256ssd 13 inches at 15,000kshs.",
-      "image": "/uploads/img_1770982135619.jpeg",
-      "createdAt": "2026-02-13T11:28:55.623Z"
+      "description": "Brand: HP\r\nModel: ProBook MT31\r\nType: Business laptop / Mobile Thin Client\r\nProcessor: Intel Celeron 3867U @ 1.80GHz (Dual-Core) \r\nStorage capacity: 128GB SSD or 256GB SSD (Varies by configuration) \r\nMaximum storage capacity: 2TB SSD \r\nRAM: 4GB, 8GB, or 16GB (Varies by configuration) \r\nMaximum RAM upgrade: 32GB \r\nSupported OS: Windows 10 Pro / Windows 11 Pro / Windows IoT Enterprise",
+      "image": "/uploads/img_1775204711636.png",
+      "createdAt": "2026-02-13T11:28:55.623Z",
+      "updatedAt": "2026-04-03T08:31:00.359Z"
     },
     {
       "id": "prod_1770982203522_trsp7",
       "name": "Lenovo Thinkpad yoga 11e",
       "categoryId": "cat_1",
       "type": "product",
-      "price": 10000,
-      "stock": 0,
-      "sku": "",
+      "price": 14000,
+      "stock": 5,
+      "sku": "Lenovo Thinkpad yoga 11e",
       "description": "Lenovo Thinkpad yoga 11e\r\n4gbram 128gb ssd\r\nTouch screen x360",
-      "image": "/uploads/img_1770982203519.jpeg",
-      "createdAt": "2026-02-13T11:30:03.522Z"
+      "image": "/uploads/img_1775205892465.webp",
+      "createdAt": "2026-02-13T11:30:03.522Z",
+      "updatedAt": "2026-04-03T08:44:52.816Z"
     },
     {
       "id": "prod_1770982450121_7xdji",
@@ -145,11 +148,12 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 25000,
-      "stock": 0,
-      "sku": "",
-      "description": "8 gb ram 256 gb ssd 14\"screen",
-      "image": "/uploads/img_1770982450117.jpeg",
-      "createdAt": "2026-02-13T11:34:10.121Z"
+      "stock": 5,
+      "sku": "HP14-ATH-SLV-4-128",
+      "description": "Brand: HP\r\nModel: 14 (AMD Athlon Silver series, e.g., 14-fq/14z-em)\r\nType: Clamshell laptop\r\nProcessor: AMD Athlon Silver 3050U or 7120U (2 cores, up to 3.5 GHz)\r\nStorage capacity: 128 GB SSD or 256 GB SSD (typical configs)\r\nMaximum storage capacity: 1 TB SSD (M.2 NVMe slot upgradeable)\r\nRAM: 4 GB DDR4 (onboard/soldered)\r\nMaximum RAM upgrade: 4 GB (non-upgradable, soldered)\r\nSupported OS: Windows 11 Home, Windows 10 S mode, Linux\r\nBattery health: N/A (new: 8 hours typical, 41Wh 3-cell)",
+      "image": "/uploads/img_1775206560925.jpg",
+      "createdAt": "2026-02-13T11:34:10.121Z",
+      "updatedAt": "2026-04-03T08:56:00.972Z"
     },
     {
       "id": "prod_1770982564905_elwwn",
@@ -157,12 +161,12 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 11000,
-      "stock": 0,
-      "sku": "",
-      "description": "4 gb ram 128 gb ssd Touchscreen x360 Sold at 15000",
-      "image": "/uploads/img_1770982564901.jpeg",
+      "stock": 5,
+      "sku": "Dell latitude 3190",
+      "description": "Dell Latitude 3190 - First time requested (no repeats tracked).\r\n\r\nBrand: Dell\r\nModel: Latitude 3190 (2-in-1 education laptop)\r\nType: Detachable 2-in-1 laptop/tablet\r\nProcessor: Intel Celeron N4100/N4120 or Pentium Silver N5000 (4 cores, up to 2.7 GHz)\r\nStorage capacity: 64 GB eMMC or 128 GB SSD (typical configs)\r\nMaximum storage capacity: 256 GB SSD (M.2 slot upgradeable)\r\nRAM: 4 GB or 8 GB LPDDR4 (soldered)\r\nMaximum RAM upgrade: 8 GB (non-upgradable beyond factory max)\r\nSupported OS: Windows 10/11 Pro Education, ChromeOS, Linux\r\nBattery health: N/A (new: 8-10 hours typical, 42Wh)",
+      "image": "/uploads/img_1775206824346.webp",
       "createdAt": "2026-02-13T11:36:04.905Z",
-      "updatedAt": "2026-02-17T10:20:03.894Z"
+      "updatedAt": "2026-04-03T09:00:24.445Z"
     },
     {
       "id": "prod_1770982676435_u1ak1",
@@ -178,15 +182,16 @@
     },
     {
       "id": "prod_1770982745024_ewr49",
-      "name": "Hp 14",
+      "name": "HP 14",
       "categoryId": "cat_1",
       "type": "product",
       "price": 45000,
-      "stock": 0,
+      "stock": 5,
       "sku": "",
-      "description": "Hp 14\r\nIntel Coi7\r\n8 gb ram 256 gb ssd\r\n12th generation",
-      "image": "/uploads/img_1770982745022.jpeg",
-      "createdAt": "2026-02-13T11:39:05.024Z"
+      "description": "Brand: HP\r\nModel: 14s-dq series (12th Gen i7 config)\r\nType: Clamshell laptop\r\nProcessor: Intel Core i7-1255U (12th Gen, 10 cores, up to 4.7 GHz)\r\nStorage capacity: 256 GB NVMe SSD\r\nMaximum storage capacity: 1 TB SSD (M.2 slot upgradeable)\r\nRAM: 8 GB DDR4-3200\r\nMaximum RAM upgrade: 16 GB (1 slot upgradeable)\r\nSupported OS: Windows 11 Home/Pro, Linux\r\nBattery health: N/A (new: 8-10 hours typical, 45Wh)\r\nSKU / Item Code: HP14-i7-12G-256-8",
+      "image": "/uploads/img_1775207652337.webp",
+      "createdAt": "2026-02-13T11:39:05.024Z",
+      "updatedAt": "2026-04-03T09:14:12.373Z"
     },
     {
       "id": "prod_1770982788620_rccbj",
@@ -194,12 +199,12 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 17000,
-      "stock": 0,
+      "stock": 5,
       "sku": "",
-      "description": "Lenovo Thinkpad T470 Coi5 6th Generation 8gb ram 256ssd at 17,000 now available",
-      "image": "/uploads/img_1770982827006.png",
+      "description": "Lenovo ThinkPad T470\r\nBrand: Lenovo\r\nModel: ThinkPad T470\r\nType: Clamshell business laptop\r\nProcessor: Intel Core i5-7300U/i7-7500U (7th Gen, up to 3.5 GHz)\r\nStorage capacity: 256 GB SSD (typical)\r\nMaximum storage capacity: 1 TB SSD (2x M.2 slots)\r\nRAM: 8 GB DDR4\r\nMaximum RAM upgrade: 32 GB (2 slots)\r\nSupported OS: Windows 10/11 Pro, Linux\r\nBattery health: N/A (new: 14-17 hours typical w/ extended battery)\r\nSKU / Item Code: LEN-T470-i5-256-8",
+      "image": "/uploads/img_1775207959508.jpg",
       "createdAt": "2026-02-13T11:39:48.620Z",
-      "updatedAt": "2026-02-13T11:40:27.011Z"
+      "updatedAt": "2026-04-03T09:19:19.920Z"
     },
     {
       "id": "prod_1770982875815_ugwl9",
@@ -410,8 +415,7 @@
     "shopName": "ECSIMS",
     "currency": "KES",
     "currencySymbol": "KSh"
-  }
-  ,
+  },
   "users": [
     {
       "id": 1,

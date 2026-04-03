@@ -254,12 +254,12 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 7500,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
       "description": "Binding Machine\r\nBrand: Generic/Office Brands (Fellowes, GBC, Akiles)\r\nModel: Standard Comb Binding Machine\r\nType: Manual document binding equipment",
       "image": "/uploads/img_1775225294029.jpg",
       "createdAt": "2026-02-13T11:45:48.610Z",
-      "updatedAt": "2026-04-03T14:13:19.461Z"
+      "updatedAt": "2026-04-03T14:08:15.172Z"
     },
     {
       "id": "prod_1770983192229_otdn3",
@@ -267,12 +267,12 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 38000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
       "description": "Hp prodesk 600 G6 MT\r\nBrand: HP\r\nModel: ProDesk 600 G6 Microtower\r\nType: Desktop PC (Microtower)\r\nProcessor: Intel Core i5-10500 (10th Gen, 6 cores, up to 4.5 GHz)\r\nStorage capacity: 512 GB NVMe SSD\r\nMaximum storage capacity: 2 TB (multiple drive bays)\r\nRAM: 16 GB DDR4-2666\r\nMaximum RAM upgrade: 64 GB (4 slots)\r\nSupported OS: Windows 10/11 Pro\r\nBattery health: N/A (desktop)",
       "image": "/uploads/img_1775225187337.jpg",
       "createdAt": "2026-02-13T11:46:32.229Z",
-      "updatedAt": "2026-04-03T14:13:29.183Z"
+      "updatedAt": "2026-04-03T14:06:27.678Z"
     },
     {
       "id": "prod_1770983378269_5py28",

@@ -30,6 +30,37 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+        /* Order Buttons Layout */
+    .order-buttons {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .call-btn, .whatsapp-btn {
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .call-btn:hover, .whatsapp-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .call-btn:hover {
+      box-shadow: 0 8px 30px rgba(14,165,233,0.35);
+    }
+
+    .whatsapp-btn:hover {
+      box-shadow: 0 8px 30px rgba(37,211,102,0.35);
+    }
+
+    @media (max-width: 640px) {
+      .order-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
     .badge { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; }
     .meta-row { border-bottom: 1px solid rgba(56,189,248,0.06); }
     .contact-btn {
@@ -153,22 +184,45 @@
           </div>
         </div>
 
-        <!-- CTA -->
+               <!-- CTA - Updated with WhatsApp & Call Buttons -->
         <div class="space-y-3 pt-1">
+          <!-- Two-button layout for products in stock -->
           <% if (product.type === 'service') { %>
-            <a href="tel:" class="contact-btn w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-semibold text-sm">
-              📞 Call to Book This Service
-            </a>
+            <!-- Service Booking -->
+            <div class="order-buttons">
+              <a href="tel:+254759697878" class="call-btn flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-semibold text-sm"
+                 style="background:linear-gradient(135deg, #0ea5e9, #0369a1);">
+                📞 Call to Book
+              </a>
+              <a href="https://wa.me/+254759697878?text=Hello%2C%20I%27m%20interested%20in%20booking%20this%20service%3A%20<%= encodeURIComponent(product.name) %>%0A%0APrice%3A%20<%= data.settings.currencySymbol %>%20<%= product.price.toLocaleString() %>%0A%0APlease%20let%20me%20know%20the%20availability."
+                 target="_blank"
+                 class="whatsapp-btn flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-semibold text-sm"
+                 style="background:#25D366;">
+                💬 Book on WhatsApp
+              </a>
+            </div>
           <% } else if (product.stock > 0) { %>
-            <a href="tel:" class="contact-btn w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-semibold text-sm">
-              📞 Call to Order
-            </a>
+            <!-- Product in stock - Show both buttons -->
+            <div class="order-buttons">
+              <a href="tel:+254759697878" class="call-btn flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-semibold text-sm"
+                 style="background:linear-gradient(135deg, #0ea5e9, #0369a1);">
+                📞 Call to Order
+              </a>
+              <a href="https://wa.me/+254759697878?text=Hello%2C%20I%27m%20interested%20in%20ordering%3A%20<%= encodeURIComponent(product.name) %>%20-%20Price%3A%20<%= data.settings.currencySymbol %>%20<%= product.price.toLocaleString() %>%0A%0AProduct%20SKU%3A%20<%= product.sku || 'N/A' %>%0A%0AIs%20it%20available%3F"
+                 target="_blank"
+                 class="whatsapp-btn flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-semibold text-sm"
+                 style="background:#25D366;">
+                💬 Order on WhatsApp
+              </a>
+            </div>
           <% } else { %>
+            <!-- Out of stock -->
             <button disabled class="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-slate-600 font-semibold text-sm cursor-not-allowed"
                     style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">
               Out of Stock
             </button>
           <% } %>
+
           <a href="/shop" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm text-slate-400 hover:text-white transition-colors"
              style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">
             ← Continue Browsing

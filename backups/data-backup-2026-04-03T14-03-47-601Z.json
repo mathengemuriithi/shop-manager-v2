@@ -241,12 +241,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 6000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
-      "description": "Yatai Laminator\r\nBrand: Yatai\r\nModel: YT-320 A3 Laminator\r\nType: Heavy-duty pouch laminating machine",
-      "image": "/uploads/img_1775225424384.jpg",
-      "createdAt": "2026-02-13T11:45:11.704Z",
-      "updatedAt": "2026-04-03T14:13:09.923Z"
+      "description": "Yatai laminator\r\nYt - 320 now available @6000",
+      "image": "/uploads/img_1770983111702.jpeg",
+      "createdAt": "2026-02-13T11:45:11.704Z"
     },
     {
       "id": "prod_1770983148610_m5ivr",
@@ -254,12 +253,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 7500,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
-      "description": "Binding Machine\r\nBrand: Generic/Office Brands (Fellowes, GBC, Akiles)\r\nModel: Standard Comb Binding Machine\r\nType: Manual document binding equipment",
-      "image": "/uploads/img_1775225294029.jpg",
-      "createdAt": "2026-02-13T11:45:48.610Z",
-      "updatedAt": "2026-04-03T14:13:19.461Z"
+      "description": "Binding Machine (bright office)\r\n@7500",
+      "image": "/uploads/img_1770983148606.jpeg",
+      "createdAt": "2026-02-13T11:45:48.610Z"
     },
     {
       "id": "prod_1770983192229_otdn3",
@@ -267,12 +265,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 38000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
-      "description": "Hp prodesk 600 G6 MT\r\nBrand: HP\r\nModel: ProDesk 600 G6 Microtower\r\nType: Desktop PC (Microtower)\r\nProcessor: Intel Core i5-10500 (10th Gen, 6 cores, up to 4.5 GHz)\r\nStorage capacity: 512 GB NVMe SSD\r\nMaximum storage capacity: 2 TB (multiple drive bays)\r\nRAM: 16 GB DDR4-2666\r\nMaximum RAM upgrade: 64 GB (4 slots)\r\nSupported OS: Windows 10/11 Pro\r\nBattery health: N/A (desktop)",
-      "image": "/uploads/img_1775225187337.jpg",
-      "createdAt": "2026-02-13T11:46:32.229Z",
-      "updatedAt": "2026-04-03T14:13:29.183Z"
+      "description": "Hp prodesk 600 G6 MT\r\nIntel coi5 10th generation 8gb ram 128gb ssd @38,000",
+      "image": "/uploads/img_1770983192225.jpeg",
+      "createdAt": "2026-02-13T11:46:32.229Z"
     },
     {
       "id": "prod_1770983378269_5py28",
@@ -280,12 +277,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 16000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
-      "description": "Dell 3380\r\nBrand: Dell\r\nModel: Latitude 3380\r\nType: Clamshell education/business laptop\r\nProcessor: Intel Core i5-7200U (7th Gen, dual-core, up to 3.1 GHz)\r\nStorage capacity: 128 GB SSD or 500 GB HDD\r\nMaximum storage capacity: 512 GB SSD\r\nRAM: 8 GB DDR4\r\nMaximum RAM upgrade: 16 GB (1 slot)\r\nSupported OS: Windows 10/11 Pro/Home",
+      "description": "Dell 3380\r\nIntel coi5 i5 8gb ram 256 ssd 7thgen\r\n@16000",
       "image": "/uploads/img_1770983378261.jpeg",
-      "createdAt": "2026-02-13T11:49:38.269Z",
-      "updatedAt": "2026-04-03T14:04:45.205Z"
+      "createdAt": "2026-02-13T11:49:38.269Z"
     },
     {
       "id": "prod_1770983437634_dcmhw",
@@ -293,12 +289,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 30000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
       "description": "Hp elitebook 845GB \r\n✨AMD Ryzen 5\r\n✨16gb ram 256ssd 14''\r\n✨30,000",
       "image": "/uploads/img_1770983437628.jpeg",
-      "createdAt": "2026-02-13T11:50:37.634Z",
-      "updatedAt": "2026-04-03T14:13:01.630Z"
+      "createdAt": "2026-02-13T11:50:37.634Z"
     },
     {
       "id": "prod_1770983492054_dypi1",
@@ -306,12 +301,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 45000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
-      "description": "MICROSOFT SURFACE LAPTOP 3\r\nBrand: Microsoft\r\nModel: Surface Laptop 3\r\nType: Clamshell premium ultrabook\r\nProcessor: Intel Core i5-1035G7/i7-1065G7 (10th Gen) or AMD Ryzen 5/7 3000 series\r\nStorage capacity: 256 GB SSD\r\nMaximum storage capacity: 1 TB SSD (soldered)\r\nRAM: 8 GB or 16 GB LPDDR4x\r\nMaximum RAM upgrade: None (soldered)\r\nSupported OS: Windows 10/11 Home/Pro",
+      "description": "🌹MICROSOFT SURFACE\r\n🌹LAPTOP 3\r\n🌹1.2GHZ SPEED CO15\r\n🌹8GB RAM SSD\r\n🌹10TH GENERATION\r\n🌹TOUCHSCREEN\r\n@45,000",
       "image": "/uploads/img_1770983492050.jpeg",
-      "createdAt": "2026-02-13T11:51:32.054Z",
-      "updatedAt": "2026-04-03T14:03:47.698Z"
+      "createdAt": "2026-02-13T11:51:32.054Z"
     },
     {
       "id": "prod_1770983869685_qguk3",

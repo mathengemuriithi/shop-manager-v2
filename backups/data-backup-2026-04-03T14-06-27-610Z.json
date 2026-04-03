@@ -241,12 +241,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 6000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
-      "description": "Yatai Laminator\r\nBrand: Yatai\r\nModel: YT-320 A3 Laminator\r\nType: Heavy-duty pouch laminating machine",
-      "image": "/uploads/img_1775225424384.jpg",
-      "createdAt": "2026-02-13T11:45:11.704Z",
-      "updatedAt": "2026-04-03T14:13:09.923Z"
+      "description": "Yatai laminator\r\nYt - 320 now available @6000",
+      "image": "/uploads/img_1770983111702.jpeg",
+      "createdAt": "2026-02-13T11:45:11.704Z"
     },
     {
       "id": "prod_1770983148610_m5ivr",
@@ -254,12 +253,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 7500,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
-      "description": "Binding Machine\r\nBrand: Generic/Office Brands (Fellowes, GBC, Akiles)\r\nModel: Standard Comb Binding Machine\r\nType: Manual document binding equipment",
-      "image": "/uploads/img_1775225294029.jpg",
-      "createdAt": "2026-02-13T11:45:48.610Z",
-      "updatedAt": "2026-04-03T14:13:19.461Z"
+      "description": "Binding Machine (bright office)\r\n@7500",
+      "image": "/uploads/img_1770983148606.jpeg",
+      "createdAt": "2026-02-13T11:45:48.610Z"
     },
     {
       "id": "prod_1770983192229_otdn3",
@@ -267,12 +265,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 38000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
-      "description": "Hp prodesk 600 G6 MT\r\nBrand: HP\r\nModel: ProDesk 600 G6 Microtower\r\nType: Desktop PC (Microtower)\r\nProcessor: Intel Core i5-10500 (10th Gen, 6 cores, up to 4.5 GHz)\r\nStorage capacity: 512 GB NVMe SSD\r\nMaximum storage capacity: 2 TB (multiple drive bays)\r\nRAM: 16 GB DDR4-2666\r\nMaximum RAM upgrade: 64 GB (4 slots)\r\nSupported OS: Windows 10/11 Pro\r\nBattery health: N/A (desktop)",
-      "image": "/uploads/img_1775225187337.jpg",
-      "createdAt": "2026-02-13T11:46:32.229Z",
-      "updatedAt": "2026-04-03T14:13:29.183Z"
+      "description": "Hp prodesk 600 G6 MT\r\nIntel coi5 10th generation 8gb ram 128gb ssd @38,000",
+      "image": "/uploads/img_1770983192225.jpeg",
+      "createdAt": "2026-02-13T11:46:32.229Z"
     },
     {
       "id": "prod_1770983378269_5py28",
@@ -293,12 +290,11 @@
       "categoryId": "cat_1",
       "type": "product",
       "price": 30000,
-      "stock": 5,
+      "stock": 0,
       "sku": "",
       "description": "Hp elitebook 845GB \r\n✨AMD Ryzen 5\r\n✨16gb ram 256ssd 14''\r\n✨30,000",
       "image": "/uploads/img_1770983437628.jpeg",
-      "createdAt": "2026-02-13T11:50:37.634Z",
-      "updatedAt": "2026-04-03T14:13:01.630Z"
+      "createdAt": "2026-02-13T11:50:37.634Z"
     },
     {
       "id": "prod_1770983492054_dypi1",

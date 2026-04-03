@@ -1,0 +1,65 @@
+<!--
+  Reusable Catalogue Badge Component
+  Usage: <%- include('../partials/catalogue-badge', { showCount: true, animated: true, size: 'md' }) %>
+  Props:
+    - showCount: boolean - displays product count
+    - animated: boolean - adds pulse animation
+    - size: 'sm' | 'md' | 'lg' - controls padding and text size
+    - glow: boolean - adds hover glow effect
+    - icon: 'bag' | 'cart' | 'sparkle' - icon style
+-->
+
+<%
+  // Size configurations
+  const sizes = {
+    sm: { padding: 'px-3 py-1.5', text: 'text-sm', icon: 'w-4 h-4', gap: 'gap-1.5' },
+    md: { padding: 'px-5 py-2.5', text: 'text-base', icon: 'w-5 h-5', gap: 'gap-2' },
+    lg: { padding: 'px-7 py-3.5', text: 'text-lg', icon: 'w-6 h-6', gap: 'gap-3' }
+  };
+  const sizeConfig = sizes[size || 'md'];
+  const showCount = locals.showCount !== false;
+  const animated = locals.animated !== false;
+  const glow = locals.glow !== false;
+  const iconType = locals.icon || 'bag';
+
+  // Icon selector
+  const icons = {
+    bag: `<svg class="${sizeConfig.icon}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+    </svg>`,
+    cart: `<svg class="${sizeConfig.icon}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6.5M17 13l1.5 6.5M9 21h6"/>
+    </svg>`,
+    sparkle: `<svg class="${sizeConfig.icon}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+    </svg>`
+  };
+  const selectedIcon = icons[iconType] || icons.bag;
+%>
+
+<div class="inline-flex items-center <%= sizeConfig.gap %> <%= sizeConfig.padding %> bg-gradient-to-r from-blue-900 to-indigo-900 text-white rounded-full border border-blue-600 transition-all duration-300
+  <%= glow ? 'hover:shadow-lg hover:shadow-blue-500/30' : '' %>
+  <%= animated ? 'hover:scale-105' : '' %>
+  cursor-pointer group"
+  onclick="window.location.href='/shop'">
+
+  <!-- Animated Icon Container -->
+  <div class="<%= animated ? 'group-hover:animate-bounce' : '' %>">
+    <%- selectedIcon %>
+  </div>
+
+  <!-- Main Text -->
+  <span class="font-semibold tracking-wide <%= sizeConfig.text %>">Browse Our Catalogue</span>
+
+  <!-- Optional Count Badge -->
+  <% if (showCount && typeof productCount !== 'undefined') { %>
+    <span class="ml-1 bg-blue-800 text-xs px-2 py-0.5 rounded-full">
+      <%= productCount %> items
+    </span>
+  <% } %>
+
+  <!-- Arrow Indicator -->
+  <svg class="<%= sizeConfig.icon %> transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+  </svg>
+</div>

@@ -53,8 +53,8 @@ app.use("/admin", adminRoutes);
 app.use("/shop", publicRoutes);
 
 // ===== ADD SETUP ROUTE HERE (BEFORE app.listen) =====
-const setupRouter = require("./routes/setup");
-app.use("/setup", setupRouter);
+//const setupRouter = require("./routes/setup");
+//app.use("/setup", setupRouter);
 
 // ─── ROOT REDIRECT ───────────────────────────────────────────────────────────
 app.get("/", (req, res) => {

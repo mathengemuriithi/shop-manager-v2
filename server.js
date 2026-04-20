@@ -74,7 +74,7 @@ app.use((req, res) => {
 // ─── START ───────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log('\n╔════════════════════════════════════════╗');
-  console.log('║   🖥️  TechPoint Shop Manager Running    ║');
+  console.log('║   🖥️  TechPoint- Shop Manager Running    ║');
   console.log('╚════════════════════════════════════════╝');
   console.log(`\n  → App:   http://localhost:${PORT}`);
   console.log(`  → Login: http://localhost:${PORT}/login`);

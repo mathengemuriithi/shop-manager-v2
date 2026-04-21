@@ -228,9 +228,40 @@
             ← Continue Browsing
           </a>
         </div>
-
       </div>
     </div>
+    <!-- Recently Viewed Products -->
+<% if (recentlyViewed && recentlyViewed.length > 1) { %>
+  <div class="mt-16 pt-8 border-t border-blue-900/30">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-xl">👁️</span>
+      <h2 class="text-lg font-bold text-white">Recently Viewed</h2>
+      <div class="flex-1 border-t section-divider"></div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <% recentlyViewed.forEach(item => {
+        if (item.id === product.id) return; // Skip current product
+      %>
+        <a href="/shop/item/<%= item.id %>" class="group">
+          <div class="bg-gradient-to-br from-blue-900/20 to-indigo-900/20 rounded-xl overflow-hidden border border-blue-800/30 hover:border-blue-600/50 transition-all">
+            <div class="h-24 img-placeholder flex items-center justify-center overflow-hidden">
+              <% if (item.image) { %>
+                <img src="<%= item.image %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="<%= item.name %>" />
+              <% } else { %>
+                <span class="text-3xl opacity-30"><%= item.type === 'service' ? '🔧' : '📦' %></span>
+              <% } %>
+            </div>
+            <div class="p-2 text-center">
+              <p class="text-xs text-slate-400 truncate"><%= item.name %></p>
+              <p class="text-xs text-brand-400 font-bold mt-1"><%= data.settings.currencySymbol %> <%= item.price.toLocaleString() %></p>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+<% } %>
   </main>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->

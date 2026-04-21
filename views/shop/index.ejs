@@ -238,6 +238,89 @@
         </div>
       </div>
     <% } %>
+      <!-- ── PAGINATION ──────────────────────────────────────────────────────── -->
+  <% if (pagination && pagination.totalPages > 1) { %>
+    <div class="flex flex-col items-center gap-4 mt-12 pt-4 border-t border-blue-900/30">
+      <div class="text-sm text-slate-500">
+        Showing <%= (pagination.currentPage - 1) * pagination.itemsPerPage + 1 %>
+        - <%= Math.min(pagination.currentPage * pagination.itemsPerPage, pagination.totalItems) %>
+        of <%= pagination.totalItems %> products
+      </div>
+
+      <div class="flex items-center gap-2 flex-wrap">
+        <!-- Previous Button -->
+        <% if (pagination.hasPrev) { %>
+          <a href="?<%= new URLSearchParams({ ...filters, page: pagination.prevPage }).toString() %>"
+             class="px-4 py-2 rounded-lg bg-blue-900/50 hover:bg-blue-800 text-white text-sm transition-all">
+            ← Previous
+          </a>
+        <% } else { %>
+          <span class="px-4 py-2 rounded-lg bg-slate-800/50 text-slate-600 text-sm cursor-not-allowed">
+            ← Previous
+          </span>
+        <% } %>
+
+        <!-- Page Numbers -->
+        <div class="flex gap-1">
+          <%
+            // Show limited page numbers for better UX
+            let startPage = Math.max(1, pagination.currentPage - 2);
+            let endPage = Math.min(pagination.totalPages, pagination.currentPage + 2);
+
+            if (endPage - startPage < 4) {
+              if (startPage === 1) endPage = Math.min(pagination.totalPages, startPage + 4);
+              if (endPage === pagination.totalPages) startPage = Math.max(1, endPage - 4);
+            }
+          %>
+
+          <% if (startPage > 1) { %>
+            <a href="?<%= new URLSearchParams({ ...filters, page: 1 }).toString() %>"
+               class="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-900/30 hover:bg-blue-800 text-white text-sm transition-all">
+              1
+            </a>
+            <% if (startPage > 2) { %>
+              <span class="w-10 h-10 flex items-center justify-center text-slate-600">...</span>
+            <% } %>
+          <% } %>
+
+          <% for (let i = startPage; i <= endPage; i++) { %>
+            <% if (i === pagination.currentPage) { %>
+              <span class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-600 text-white text-sm font-bold">
+                <%= i %>
+              </span>
+            <% } else { %>
+              <a href="?<%= new URLSearchParams({ ...filters, page: i }).toString() %>"
+                 class="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-900/30 hover:bg-blue-800 text-white text-sm transition-all">
+                <%= i %>
+              </a>
+            <% } %>
+          <% } %>
+
+          <% if (endPage < pagination.totalPages) { %>
+            <% if (endPage < pagination.totalPages - 1) { %>
+              <span class="w-10 h-10 flex items-center justify-center text-slate-600">...</span>
+            <% } %>
+            <a href="?<%= new URLSearchParams({ ...filters, page: pagination.totalPages }).toString() %>"
+               class="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-900/30 hover:bg-blue-800 text-white text-sm transition-all">
+              <%= pagination.totalPages %>
+            </a>
+          <% } %>
+        </div>
+
+        <!-- Next Button -->
+        <% if (pagination.hasNext) { %>
+          <a href="?<%= new URLSearchParams({ ...filters, page: pagination.nextPage }).toString() %>"
+             class="px-4 py-2 rounded-lg bg-blue-900/50 hover:bg-blue-800 text-white text-sm transition-all">
+            Next →
+          </a>
+        <% } else { %>
+          <span class="px-4 py-2 rounded-lg bg-slate-800/50 text-slate-600 text-sm cursor-not-allowed">
+            Next →
+          </span>
+        <% } %>
+      </div>
+    </div>
+  <% } %>
   </main>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->

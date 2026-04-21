@@ -9,7 +9,7 @@ const { readData } = require("../utils/db");
 // GET /shop
 router.get("/", (req, res) => {
   const data = readData();
-  const { search, category } = req.query;
+  const { search, category, page = 1 } = req.query;
 
   let products = data.products;
 
@@ -27,16 +27,36 @@ router.get("/", (req, res) => {
   if (category && category !== "all") {
     products = products.filter((p) => p.categoryId === category);
   }
-
-  // Get product count for the badge
+  // ===== PAGINATION LOGIC =====
+  const itemsPerPage = 12;
+  const currentPage = parseInt(page) || 1;
+  const totalItems = products.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  // Calculate start and end indices
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  // Get products for current page
+  const paginatedProducts = products.slice(startIndex, endIndex);
+  //   // Get product count for the badge
   const productCount = products.length;
 
   res.render("shop/index", {
     data: data,
-    products: products,
+    products: paginatedProducts,
     categories: data.categories,
     filters: { search: search || "", category: category || "" },
     productCount: productCount, // ← This enables the badge count
+    // Pagination variables
+    pagination: {
+      currentPage,
+      totalPages,
+      totalItems,
+      itemsPerPage,
+      hasPrev: currentPage > 1,
+      hasNext: currentPage < totalPages,
+      prevPage: currentPage - 1,
+      nextPage: currentPage + 1,
+    },
   });
 });
 
@@ -48,7 +68,6 @@ router.get("/item/:id", (req, res) => {
   if (!product) {
     return res.redirect("/shop");
   }
-
   const category = data.categories.find((c) => c.id === product.categoryId);
 
   // ===== RECENTLY VIEWED LOGIC =====

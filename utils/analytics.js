@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const analyticsPath = path.join(__dirname, "../data/analytics.json");
-const clientIp = req.clientIp;
+
 // Read analytics data
 function readAnalytics() {
   if (!fs.existsSync(analyticsPath)) {
@@ -18,6 +18,7 @@ function readAnalytics() {
   }
   return JSON.parse(fs.readFileSync(analyticsPath, "utf8"));
 }
+// ... rest of your code (keep everything else the same)
 
 // Write analytics data
 function writeAnalytics(data) {

@@ -13,12 +13,15 @@ const fs = require("fs");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const publicRoutes = require("./routes/public");
-const { trackPageView } = require("./utils/analytics");
+const { trackPageView, readAnalytics } = require("./utils/analytics");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// ─── REQUEST IP ──────────────────────────────────────────────────────────────
 const requestIp = require("request-ip");
 app.use(requestIp.mw());
+
 // ─── VIEW ENGINE ─────────────────────────────────────────────────────────────
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -45,8 +48,11 @@ app.use(
     },
   }),
 );
-// Add this AFTER session middleware (around line 50-60)
-// ─── ANALYTICS MIDDLEWARE ────────────────────────────────────────────────
+
+// ─── FLASH MESSAGES ──────────────────────────────────────────────────────────
+app.use(flash());
+
+// ─── ANALYTICS MIDDLEWARE ────────────────────────────────────────────────────
 app.use((req, res, next) => {
   // Skip tracking for admin routes and static files
   const isAdminRoute =
@@ -61,32 +67,30 @@ app.use((req, res, next) => {
   }
   next();
 });
-// Add this after your analytics middleware
+
+// ─── MAKE ANALYTICS AVAILABLE TO ALL VIEWS ───────────────────────────────────
 app.use((req, res, next) => {
-  const { readAnalytics } = require("./utils/analytics");
   const analytics = readAnalytics();
   res.locals.totalViews = analytics.lifetime.totalViews;
   res.locals.uniqueVisitors = analytics.lifetime.uniqueVisitors;
   next();
 });
-// ─── FLASH MESSAGES ──────────────────────────────────────────────────────────
-app.use(flash());
 
 // ─── ROUTES ──────────────────────────────────────────────────────────────────
 app.use("/", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/shop", publicRoutes);
 
-// ===== ADD SETUP ROUTE HERE (BEFORE app.listen) =====
-//const setupRouter = require("./routes/setup");
-//app.use("/setup", setupRouter);
+// Setup route (only uncomment if you have routes/setup.js)
+// const setupRouter = require("./routes/setup");
+// app.use("/setup", setupRouter);
 
 // ─── ROOT REDIRECT ───────────────────────────────────────────────────────────
 app.get("/", (req, res) => {
   // If admin is logged in, go to admin panel
   if (req.session.isAdmin) return res.redirect("/admin");
   // Otherwise, show the shop
-  res.redirect("/shop"); // ← Now visitors see products
+  res.redirect("/shop");
 });
 
 // ─── 404 HANDLER ─────────────────────────────────────────────────────────────
@@ -112,5 +116,3 @@ app.listen(PORT, () => {
   console.log("\n  Credentials: admin / techpoint2025");
   console.log("  (Change in routes/auth.js before deploying)\n");
 });
-const setupRouter = require("./routes/setup");
-app.use("/setup", setupRouter);

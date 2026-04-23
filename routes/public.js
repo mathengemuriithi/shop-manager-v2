@@ -5,6 +5,7 @@
 const express = require("express");
 const router = express.Router();
 const { readData } = require("../utils/db");
+const { trackProductView } = require("../utils/analytics");
 
 // GET /shop
 router.get("/", (req, res) => {
@@ -69,7 +70,11 @@ router.get("/item/:id", (req, res) => {
     return res.redirect("/shop");
   }
   const category = data.categories.find((c) => c.id === product.categoryId);
-
+  // Inside your /item/:id route, after finding the product, add:
+  // Track product view (skip if admin)
+  if (!req.session.isAdmin) {
+    trackProductView(product.id, false);
+  }
   // ===== RECENTLY VIEWED LOGIC =====
   // Get existing recently viewed from session or create empty array
   let recentlyViewed = req.session.recentlyViewed || [];

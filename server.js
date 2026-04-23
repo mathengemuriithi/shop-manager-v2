@@ -13,10 +13,12 @@ const fs = require("fs");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const publicRoutes = require("./routes/public");
+const { trackPageView } = require("./utils/analytics");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const requestIp = require("request-ip");
+app.use(requestIp.mw());
 // ─── VIEW ENGINE ─────────────────────────────────────────────────────────────
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -43,7 +45,30 @@ app.use(
     },
   }),
 );
+// Add this AFTER session middleware (around line 50-60)
+// ─── ANALYTICS MIDDLEWARE ────────────────────────────────────────────────
+app.use((req, res, next) => {
+  // Skip tracking for admin routes and static files
+  const isAdminRoute =
+    req.path.startsWith("/admin") ||
+    req.path === "/login" ||
+    req.path === "/logout";
+  const isStaticFile = req.path.match(/\.(css|js|jpg|jpeg|png|gif|webp|ico)$/);
 
+  if (!isAdminRoute && !isStaticFile) {
+    const isAdmin = req.session.isAdmin === true;
+    trackPageView(req, isAdmin);
+  }
+  next();
+});
+// Add this after your analytics middleware
+app.use((req, res, next) => {
+  const { readAnalytics } = require("./utils/analytics");
+  const analytics = readAnalytics();
+  res.locals.totalViews = analytics.lifetime.totalViews;
+  res.locals.uniqueVisitors = analytics.lifetime.uniqueVisitors;
+  next();
+});
 // ─── FLASH MESSAGES ──────────────────────────────────────────────────────────
 app.use(flash());
 

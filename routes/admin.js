@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const { getAnalytics } = require("../utils/analytics");
 const { readData, writeData, generateId } = require("../utils/db");
 const { isAuthenticated } = require("../middleware/auth");
 
@@ -195,7 +196,23 @@ router.post("/products/delete/:id", (req, res) => {
   req.flash("success", `"${product.name}" deleted.`);
   res.redirect("/admin/products");
 });
+// Add this route for the analytics
+router.get("/analytics", (req, res) => {
+  const data = readData();
+  const analytics = getAnalytics();
+  const monthlyData = Object.entries(analytics.monthlyData)
+    .sort((a, b) => b[0].localeCompare(a[0]))
+    .slice(0, 12);
 
+  res.render("admin/analytics", {
+    data,
+    analytics,
+    monthlyData,
+    topProducts: analytics.topProducts,
+    username: req.session.username,
+    messages: { error: req.flash("error"), success: req.flash("success") },
+  });
+});
 // ─── CATEGORIES ──────────────────────────────────────────────────────────────
 router.get("/categories", (req, res) => {
   const data = readData();

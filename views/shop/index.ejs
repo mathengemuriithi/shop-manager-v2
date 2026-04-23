@@ -324,9 +324,13 @@
   </main>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
-  <footer class="border-t section-divider py-8 px-6 text-center">
-    <p class="text-slate-700 text-sm"><%= data.settings.shopName %> · All prices in <%= data.settings.currency %></p>
-  </footer>
+<footer class="border-t section-divider py-8 px-6 text-center">
+  <p class="text-slate-700 text-sm"><%= data.settings.shopName %> · All prices in <%= data.settings.currency %></p>
 
+  <!-- Analytics Counter -->
+  <p class="text-xs text-slate-600 mt-3">
+    👁️ <%= totalViews || 0 %> total views · 👤 <%= uniqueVisitors || 0 %> unique visitors
+  </p>
+</footer>
 </body>
 </html>

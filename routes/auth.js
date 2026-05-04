@@ -4,7 +4,7 @@ const router = express.Router();
 
 // ─── ADMIN CREDENTIALS ─────────────────────────────────────────────────────
 // Change these before deploying to a live server!
-const ADMIN_USERNAME = "admin";
+const ADMIN_USERNAME = "adminecs";
 const ADMIN_PASSWORD = "techpoint2025";
 
 // GET /login

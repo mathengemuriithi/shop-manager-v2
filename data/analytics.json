@@ -1,7 +1,7 @@
 {
   "lifetime": {
-    "totalViews": 11,
-    "uniqueVisitors": 3
+    "totalViews": 27,
+    "uniqueVisitors": 9
   },
   "monthly": {
     "2026-04": {
@@ -10,12 +10,28 @@
       "productViews": {}
     },
     "2026-05": {
-      "uniqueVisitors": 1,
-      "totalViews": 3,
-      "productViews": {}
+      "uniqueVisitors": 7,
+      "totalViews": 19,
+      "productViews": {
+        "prod_1770982030023_agudl": 2,
+        "prod_3": 1,
+        "prod_2": 1,
+        "prod_1770982203522_trsp7": 1,
+        "prod_1770982676435_u1ak1": 1,
+        "prod_1": 1,
+        "prod_4": 1
+      }
     }
   },
-  "productViews": {},
+  "productViews": {
+    "prod_1770982030023_agudl": 2,
+    "prod_3": 1,
+    "prod_2": 1,
+    "prod_1770982203522_trsp7": 1,
+    "prod_1770982676435_u1ak1": 1,
+    "prod_1": 1,
+    "prod_4": 1
+  },
   "dailyVisits": [
     {
       "date": "2026-04-23",
@@ -23,7 +39,7 @@
     },
     {
       "date": "2026-05-04",
-      "views": 3
+      "views": 19
     }
   ]
 }

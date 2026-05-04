@@ -123,7 +123,7 @@
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
   </svg>
 </div>
-      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight">
+      <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">
         Laptops,Computers, Parts &<br/>
         <span style="background:linear-gradient(135deg,#38bdf8,#0284c7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
           Repair Services
@@ -173,189 +173,131 @@
   <!-- ── ALL PRODUCTS GRID (SIMPLIFIED - SHOWS EVERYTHING) ────────────────── -->
   <main class="max-w-7xl mx-auto px-6 pb-20">
 
-    <% if (products.length === 0) { %>
-      <div class="text-center py-20">
-        <div class="text-5xl mb-4">🔍</div>
-        <p class="text-slate-500 text-lg">No items found.</p>
-        <a href="/shop" class="text-sm text-brand-400 mt-2 inline-block hover:text-brand-300">Clear search →</a>
+  <% if (products.length === 0) { %>
+    <div class="text-center py-20">
+      <div class="text-5xl mb-4">🔍</div>
+      <p class="text-slate-500 text-lg">No items found.</p>
+      <a href="/shop" class="text-sm text-brand-400 mt-2 inline-block hover:text-brand-300">Clear search →</a>
+    </div>
+  <% } else { %>
+    <div class="mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-white">All Products (<%= products.length %>)</h2>
+        <!-- Optional: Add sorting dropdown here later -->
       </div>
-    <% } else { %>
-      <div class="mb-12">
-        <h2 class="text-xl font-bold text-white mb-4">All Products (<%= products.length %>)</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          <% products.forEach(function(item) { %>
-<div class="product-card rounded-2xl overflow-hidden flex flex-col relative">
-  <!-- Trending/Bestseller Badge (Feature 5) -->
-  <% if (item.id === topProductId) { %>
-    <div class="absolute top-2 left-2 z-10 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-full shadow-lg">
-      🔥 Bestseller
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <% products.forEach(function(item) { %>
+          <div class="product-card rounded-xl overflow-hidden flex flex-col relative">
+
+            <!-- Bestseller Badge -->
+            <% if (topProductId && item.id === topProductId) { %>
+              <div class="absolute top-2 left-2 z-10 bg-amber-500 text-black text-xs font-bold px-2 py-0.5 rounded-full shadow-lg">
+                🔥 Bestseller
+              </div>
+            <% } %>
+
+            <!-- Last Chance Badge -->
+            <% if (item.type !== 'service' && item.stock <= 3 && item.stock > 0) { %>
+              <div class="absolute top-2 right-2 z-10 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full animate-pulse shadow-lg">
+                ⚡ Last Chance
+              </div>
+            <% } %>
+
+            <!-- Product Image -->
+            <a href="/shop/item/<%= item.id %>" class="block">
+              <div class="h-36 img-placeholder flex items-center justify-center overflow-hidden relative bg-slate-900">
+                <% if (item.image) { %>
+                  <img src="<%= item.image %>" class="w-full h-full object-cover" />
+                <% } else { %>
+                  <span class="text-4xl opacity-30"><%= item.type === 'service' ? '🔧' : '📦' %></span>
+                <% } %>
+
+                <!-- Out of Stock Overlay -->
+                <% if (item.type !== 'service' && item.stock === 0) { %>
+                  <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
+                    <span class="text-white font-bold text-xs rotate-12 bg-red-600 px-2 py-0.5 rounded">SOLD OUT</span>
+                  </div>
+                <% } %>
+              </div>
+            </a>
+
+            <!-- Product Details -->
+            <div class="p-3 flex flex-col flex-1">
+              <a href="/shop/item/<%= item.id %>" class="block">
+                <h3 class="text-white font-semibold text-xs leading-snug hover:text-brand-400 transition-colors mb-1 line-clamp-2"><%= item.name %></h3>
+              </a>
+
+              <!-- Price -->
+              <div class="price-tag text-base font-bold mb-2">
+                <%= data.settings.currencySymbol %> <%= item.price.toLocaleString() %>
+              </div>
+
+              <!-- Stock Status (Compact) -->
+              <div class="mb-2">
+                <% if (item.type === 'service') { %>
+                  <span class="badge bg-purple-950 text-purple-400 px-2 py-0.5 rounded-lg text-xs">🔧 Service</span>
+                <% } else if (item.stock === 0) { %>
+                  <span class="badge bg-red-950 text-red-400 px-2 py-0.5 rounded-lg text-xs">Out of Stock</span>
+                <% } else if (item.stock <= 3) { %>
+                  <span class="badge bg-orange-950 text-orange-400 px-2 py-0.5 rounded-lg text-xs animate-pulse">🔥 Only <%= item.stock %> left</span>
+                <% } else { %>
+                  <span class="badge bg-green-950 text-green-400 px-2 py-0.5 rounded-lg text-xs">In Stock</span>
+                <% } %>
+              </div>
+
+              <!-- WhatsApp & Call Buttons -->
+              <div class="mt-auto grid grid-cols-2 gap-1">
+                <a href="tel:+254759697878"
+                   class="bg-blue-600 hover:bg-blue-700 text-white text-center py-1.5 rounded-lg text-xs font-medium transition-all">
+                  📞 Call
+                </a>
+                <a href="https://wa.me/254759697878?text=Hello%2C%20I'm%20interested%20in%20<%= encodeURIComponent(item.name) %>%20-%20<%= data.settings.currencySymbol %><%= item.price.toLocaleString() %>"
+                   target="_blank"
+                   class="bg-green-600 hover:bg-green-700 text-white text-center py-1.5 rounded-lg text-xs font-medium transition-all">
+                  💬 WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
     </div>
   <% } %>
 
-  <!-- Last Chance Banner (Feature 6) -->
-  <% if (item.type !== 'service' && item.stock <= 3 && item.stock > 0) { %>
-    <div class="absolute top-2 right-2 z-10 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse shadow-lg">
-      ⚡ Last Chance
-    </div>
-  <% } %>
-
-  <!-- Product Image -->
-  <a href="/shop/item/<%= item.id %>" class="block">
-    <div class="h-44 img-placeholder flex items-center justify-center overflow-hidden relative">
-      <% if (item.image) { %>
-        <img src="<%= item.image %>" class="w-full h-full object-cover" />
-      <% } else { %>
-        <span class="text-5xl opacity-30"><%= item.type === 'service' ? '🔧' : '📦' %></span>
-      <% } %>
-
-      <!-- Out of Stock Overlay -->
-      <% if (item.type !== 'service' && item.stock === 0) { %>
-        <div class="absolute inset-0 bg-black/70 flex items-center justify-center">
-          <span class="text-white font-bold text-sm rotate-12">SOLD OUT</span>
-        </div>
-      <% } %>
-    </div>
-  </a>
-
-  <!-- Product Details -->
-  <div class="p-5 flex flex-col flex-1">
-    <a href="/shop/item/<%= item.id %>" class="block">
-      <h3 class="text-white font-semibold text-sm leading-snug hover:text-brand-400 transition-colors mb-2"><%= item.name %></h3>
-    </a>
-
-    <!-- Price Drop Animation (Feature 7) -->
-    <div class="price-tag text-lg font-bold mb-3 price-animation">
-      <%= data.settings.currencySymbol %> <%= item.price.toLocaleString() %>
-    </div>
-
-    <!-- Live Stock Counter Animation (Feature 1) -->
-    <% if (item.type !== 'service' && item.stock <= 5 && item.stock > 0) { %>
-      <div class="mb-3 stock-counter" data-stock="<%= item.stock %>">
-        <div class="bg-orange-950/50 rounded-full h-1.5 mb-2">
-          <div class="bg-orange-500 h-1.5 rounded-full transition-all duration-500" style="width: <%= (item.stock / 10) * 100 %>%"></div>
-        </div>
-        <span class="badge bg-orange-950 text-orange-400 px-2 py-1 rounded-lg animate-pulse text-xs">
-          🔥 Only <%= item.stock %> left — <span class="stock-number"><%= item.stock %></span>
-        </span>
-      </div>
-    <% } else if (item.type !== 'service' && item.stock === 0) { %>
-      <div class="mb-3">
-        <span class="badge bg-red-950 text-red-400 px-2 py-1 rounded-lg line-through text-xs">
-          ❌ Out of Stock
-        </span>
-      </div>
-    <% } else if (item.type === 'service') { %>
-      <div class="mb-3">
-        <span class="badge bg-purple-950 text-purple-400 px-2 py-1 rounded-lg text-xs">🔧 Service</span>
-      </div>
-    <% } else { %>
-      <div class="mb-3">
-        <span class="badge bg-green-950 text-green-400 px-2 py-1 rounded-lg text-xs">✓ In Stock</span>
-      </div>
-    <% } %>
-
-    <!-- CALL & WHATSAPP BUTTONS -->
-    <div class="mt-auto grid grid-cols-2 gap-2">
-      <a href="tel:+254759697878"
-         class="bg-blue-600 hover:bg-blue-700 text-white text-center py-2.5 rounded-lg text-xs font-medium transition-all">
-        📞 Call
-      </a>
-      <a href="https://wa.me/254759697878?text=Hello%2C%20I'm%20interested%20in%20<%= encodeURIComponent(item.name) %>%20-%20<%= data.settings.currencySymbol %><%= item.price.toLocaleString() %>"
-         target="_blank"
-         class="bg-green-600 hover:bg-green-700 text-white text-center py-2.5 rounded-lg text-xs font-medium transition-all">
-        💬 WhatsApp
-      </a>
-    </div>
-  </div>
-</div>
-          <% }); %>
-        </div>
-      </div>
-    <% } %>
-      <!-- ── PAGINATION ──────────────────────────────────────────────────────── -->
+  <!-- Pagination -->
   <% if (pagination && pagination.totalPages > 1) { %>
-    <div class="flex flex-col items-center gap-4 mt-12 pt-4 border-t border-blue-900/30">
-      <div class="text-sm text-slate-500">
+    <div class="flex flex-col items-center gap-3 mt-8 pt-4 border-t border-blue-900/30">
+      <div class="text-xs text-slate-500">
         Showing <%= (pagination.currentPage - 1) * pagination.itemsPerPage + 1 %>
         - <%= Math.min(pagination.currentPage * pagination.itemsPerPage, pagination.totalItems) %>
         of <%= pagination.totalItems %> products
       </div>
-
-      <div class="flex items-center gap-2 flex-wrap">
-        <!-- Previous Button -->
+      <div class="flex items-center gap-1 flex-wrap">
         <% if (pagination.hasPrev) { %>
           <a href="?<%= new URLSearchParams({ ...filters, page: pagination.prevPage }).toString() %>"
-             class="px-4 py-2 rounded-lg bg-blue-900/50 hover:bg-blue-800 text-white text-sm transition-all">
-            ← Previous
+             class="px-3 py-1.5 rounded-lg bg-blue-900/50 hover:bg-blue-800 text-white text-xs transition-all">
+            ← Prev
           </a>
         <% } else { %>
-          <span class="px-4 py-2 rounded-lg bg-slate-800/50 text-slate-600 text-sm cursor-not-allowed">
-            ← Previous
-          </span>
+          <span class="px-3 py-1.5 rounded-lg bg-slate-800/50 text-slate-600 text-xs cursor-not-allowed">← Prev</span>
         <% } %>
 
-        <!-- Page Numbers -->
-        <div class="flex gap-1">
-          <%
-            // Show limited page numbers for better UX
-            let startPage = Math.max(1, pagination.currentPage - 2);
-            let endPage = Math.min(pagination.totalPages, pagination.currentPage + 2);
+        <span class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-xs font-bold">
+          <%= pagination.currentPage %> / <%= pagination.totalPages %>
+        </span>
 
-            if (endPage - startPage < 4) {
-              if (startPage === 1) endPage = Math.min(pagination.totalPages, startPage + 4);
-              if (endPage === pagination.totalPages) startPage = Math.max(1, endPage - 4);
-            }
-          %>
-
-          <% if (startPage > 1) { %>
-            <a href="?<%= new URLSearchParams({ ...filters, page: 1 }).toString() %>"
-               class="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-900/30 hover:bg-blue-800 text-white text-sm transition-all">
-              1
-            </a>
-            <% if (startPage > 2) { %>
-              <span class="w-10 h-10 flex items-center justify-center text-slate-600">...</span>
-            <% } %>
-          <% } %>
-
-          <% for (let i = startPage; i <= endPage; i++) { %>
-            <% if (i === pagination.currentPage) { %>
-              <span class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-600 text-white text-sm font-bold">
-                <%= i %>
-              </span>
-            <% } else { %>
-              <a href="?<%= new URLSearchParams({ ...filters, page: i }).toString() %>"
-                 class="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-900/30 hover:bg-blue-800 text-white text-sm transition-all">
-                <%= i %>
-              </a>
-            <% } %>
-          <% } %>
-
-          <% if (endPage < pagination.totalPages) { %>
-            <% if (endPage < pagination.totalPages - 1) { %>
-              <span class="w-10 h-10 flex items-center justify-center text-slate-600">...</span>
-            <% } %>
-            <a href="?<%= new URLSearchParams({ ...filters, page: pagination.totalPages }).toString() %>"
-               class="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-900/30 hover:bg-blue-800 text-white text-sm transition-all">
-              <%= pagination.totalPages %>
-            </a>
-          <% } %>
-        </div>
-
-        <!-- Next Button -->
         <% if (pagination.hasNext) { %>
           <a href="?<%= new URLSearchParams({ ...filters, page: pagination.nextPage }).toString() %>"
-             class="px-4 py-2 rounded-lg bg-blue-900/50 hover:bg-blue-800 text-white text-sm transition-all">
+             class="px-3 py-1.5 rounded-lg bg-blue-900/50 hover:bg-blue-800 text-white text-xs transition-all">
             Next →
           </a>
         <% } else { %>
-          <span class="px-4 py-2 rounded-lg bg-slate-800/50 text-slate-600 text-sm cursor-not-allowed">
-            Next →
-          </span>
+          <span class="px-3 py-1.5 rounded-lg bg-slate-800/50 text-slate-600 text-xs cursor-not-allowed">Next →</span>
         <% } %>
       </div>
     </div>
   <% } %>
-  </main>
+</main>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
 <footer class="border-t section-divider py-8 px-6 text-center">

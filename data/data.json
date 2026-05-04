@@ -408,6 +408,18 @@
       "image": "/uploads/img_1771323467645.jpeg",
       "createdAt": "2026-02-17T10:17:47.662Z",
       "updatedAt": "2026-04-03T12:14:57.558Z"
+    },
+    {
+      "id": "prod_1776950451780_gxr05",
+      "name": "Modio M56",
+      "categoryId": "cat_1776947276840_j2urp",
+      "type": "product",
+      "price": 7500,
+      "stock": 10,
+      "sku": "Modio M56",
+      "description": "6GB RAM and 128GB Storage:\r\n3000mAh Battery:\r\nDual Camera:\r\nAndroid OS.\r\n7-inch Display:\r\n MicroSD up to 32GB",
+      "image": "/uploads/img_1776950451759.jpg",
+      "createdAt": "2026-04-23T13:20:51.780Z"
     }
   ],
   "settings": {

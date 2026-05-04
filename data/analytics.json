@@ -1,12 +1,17 @@
 {
   "lifetime": {
-    "totalViews": 8,
-    "uniqueVisitors": 2
+    "totalViews": 11,
+    "uniqueVisitors": 3
   },
   "monthly": {
     "2026-04": {
       "uniqueVisitors": 2,
       "totalViews": 8,
+      "productViews": {}
+    },
+    "2026-05": {
+      "uniqueVisitors": 1,
+      "totalViews": 3,
       "productViews": {}
     }
   },
@@ -15,6 +20,10 @@
     {
       "date": "2026-04-23",
       "views": 8
+    },
+    {
+      "date": "2026-05-04",
+      "views": 3
     }
   ]
 }

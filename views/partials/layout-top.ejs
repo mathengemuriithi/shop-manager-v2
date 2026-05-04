@@ -8,6 +8,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+  /* Price Drop Animation (Feature 7) */
+@keyframes pricePulse {
+  0%, 100% { transform: scale(1); color: #0ea5e9; }
+  50% { transform: scale(1.05); color: #38bdf8; }
+}
+.price-animation {
+  display: inline-block;
+  animation: pricePulse 0.5s ease-out;
+}
+
+/* Stock Counter Animation (Feature 1) */
+@keyframes stockPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.stock-counter .bg-orange-500 {
+  animation: stockPulse 1.5s ease-in-out infinite;
+}
+
+/* Bestseller Badge Animation */
+@keyframes bestsellerGlow {
+  0%, 100% { box-shadow: 0 0 5px rgba(234, 179, 8, 0.5); }
+  50% { box-shadow: 0 0 15px rgba(234, 179, 8, 0.8); }
+}
+.bestseller-badge {
+  animation: bestsellerGlow 1.5s ease-in-out infinite;
+}
     tailwind.config = {
       theme: {
         extend: {
@@ -62,6 +89,27 @@
 </head>
 <body class="h-full font-sans text-slate-300 flex overflow-hidden">
 
+<!-- Seasonal Greeting Bar (Feature 3) -->
+<%
+  const hour = new Date().getHours();
+  const month = new Date().getMonth();
+  const day = new Date().getDate();
+  let greeting = '';
+
+  if (hour < 12) greeting = '🌅 Good morning! Karibu';
+  else if (hour < 17) greeting = '☀️ Good afternoon! Karibu';
+  else greeting = '🌙 Good evening! Karibu';
+
+  if (month === 3 && day >= 18 && day <= 22) greeting += ' 🐣 Happy Easter!';
+  else if (month === 11 && day >= 20 && day <= 26) greeting += ' 🎄 Merry Christmas!';
+  else if (month === 0 && day === 1) greeting += ' 🎉 Happy New Year!';
+  else if (month === 4 && day === 1) greeting += ' 🛠️ Labour Day!';
+  else if (month === 9 && day === 20) greeting += ' 🎉 Mashujaa Day!';
+  else greeting += ' 👋 Welcome to ECSIMS';
+%>
+<div class="bg-gradient-to-r from-blue-900/40 to-indigo-900/40 text-center py-2.5 text-xs text-slate-300 border-b border-blue-900/30">
+  <%= greeting %> | 📍 Same-day delivery in Kerugoya | 📞 24/7 Support
+</div>
   <!-- ── SIDEBAR ─────────────────────────────────────────────────────────── -->
   <aside class="w-64 flex-shrink-0 flex flex-col" style="background:#080d18; border-right:1px solid rgba(56,189,248,0.08);">
     <!-- Logo -->

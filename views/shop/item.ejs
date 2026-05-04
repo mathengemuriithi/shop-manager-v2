@@ -230,6 +230,28 @@
         </div>
       </div>
     </div>
+    <!-- Customer Typing Indicator (Feature 8) -->
+<div class="typing-indicator hidden mt-4 p-3 rounded-xl bg-blue-900/30 border border-blue-800/50">
+  <div class="flex items-center gap-2">
+    <div class="flex gap-1">
+      <div class="w-2 h-2 bg-brand-400 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+      <div class="w-2 h-2 bg-brand-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+      <div class="w-2 h-2 bg-brand-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+    </div>
+    <span class="text-xs text-slate-400">Someone is looking at this product right now...</span>
+  </div>
+</div>
+
+<script>
+// Show typing indicator randomly to simulate activity
+setTimeout(() => {
+  const indicator = document.querySelector('.typing-indicator');
+  if (indicator) {
+    indicator.classList.remove('hidden');
+    setTimeout(() => indicator.classList.add('hidden'), 5000);
+  }
+}, 3000);
+</script>
     <!-- Recently Viewed Products -->
 <% if (recentlyViewed && recentlyViewed.length > 1) { %>
   <div class="mt-16 pt-8 border-t border-blue-900/30">

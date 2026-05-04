@@ -184,56 +184,90 @@
         <h2 class="text-xl font-bold text-white mb-4">All Products (<%= products.length %>)</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           <% products.forEach(function(item) { %>
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col">
-              <!-- Product Image -->
-              <a href="/shop/item/<%= item.id %>" class="block">
-                <div class="h-44 img-placeholder flex items-center justify-center overflow-hidden">
-                  <% if (item.image) { %>
-                    <img src="<%= item.image %>" class="w-full h-full object-cover" />
-                  <% } else { %>
-                    <span class="text-5xl opacity-30"><%= item.type === 'service' ? '🔧' : '📦' %></span>
-                  <% } %>
-                </div>
-              </a>
+<div class="product-card rounded-2xl overflow-hidden flex flex-col relative">
+  <!-- Trending/Bestseller Badge (Feature 5) -->
+  <% if (item.id === topProductId) { %>
+    <div class="absolute top-2 left-2 z-10 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+      🔥 Bestseller
+    </div>
+  <% } %>
 
-              <!-- Product Details -->
-              <div class="p-5 flex flex-col flex-1">
-                <a href="/shop/item/<%= item.id %>" class="block">
-                  <h3 class="text-white font-semibold text-sm leading-snug hover:text-brand-400 transition-colors mb-2"><%= item.name %></h3>
-                </a>
+  <!-- Last Chance Banner (Feature 6) -->
+  <% if (item.type !== 'service' && item.stock <= 3 && item.stock > 0) { %>
+    <div class="absolute top-2 right-2 z-10 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse shadow-lg">
+      ⚡ Last Chance
+    </div>
+  <% } %>
 
-                <!-- Price -->
-                <div class="price-tag text-lg font-bold mb-3">
-                  <%= data.settings.currencySymbol %> <%= item.price.toLocaleString() %>
-                </div>
+  <!-- Product Image -->
+  <a href="/shop/item/<%= item.id %>" class="block">
+    <div class="h-44 img-placeholder flex items-center justify-center overflow-hidden relative">
+      <% if (item.image) { %>
+        <img src="<%= item.image %>" class="w-full h-full object-cover" />
+      <% } else { %>
+        <span class="text-5xl opacity-30"><%= item.type === 'service' ? '🔧' : '📦' %></span>
+      <% } %>
 
-                <!-- Stock Status -->
-                <div class="mb-3">
-                  <% if (item.type === 'service') { %>
-                    <span class="badge bg-purple-950 text-purple-400 px-2 py-1 rounded-lg">Service</span>
-                  <% } else if (item.stock === 0) { %>
-                    <span class="badge bg-red-950 text-red-400 px-2 py-1 rounded-lg">Out of Stock</span>
-                  <% } else if (item.stock <= 3) { %>
-                    <span class="badge bg-yellow-950 text-yellow-400 px-2 py-1 rounded-lg"><%= item.stock %> left</span>
-                  <% } else { %>
-                    <span class="badge bg-green-950 text-green-400 px-2 py-1 rounded-lg">In Stock</span>
-                  <% } %>
-                </div>
+      <!-- Out of Stock Overlay -->
+      <% if (item.type !== 'service' && item.stock === 0) { %>
+        <div class="absolute inset-0 bg-black/70 flex items-center justify-center">
+          <span class="text-white font-bold text-sm rotate-12">SOLD OUT</span>
+        </div>
+      <% } %>
+    </div>
+  </a>
 
-                <!-- CALL & WHATSAPP BUTTONS - ON EVERY PRODUCT -->
-                <div class="mt-auto grid grid-cols-2 gap-2">
-                  <a href="tel:+254759697878"
-                     class="bg-blue-600 hover:bg-blue-700 text-white text-center py-2.5 rounded-lg text-xs font-medium transition-all">
-                    📞 Call
-                  </a>
-                  <a href="https://wa.me/254759697878?text=Hello%2C%20I'm%20interested%20in%20<%= encodeURIComponent(item.name) %>%20-%20<%= data.settings.currencySymbol %><%= item.price.toLocaleString() %>"
-                     target="_blank"
-                     class="bg-green-600 hover:bg-green-700 text-white text-center py-2.5 rounded-lg text-xs font-medium transition-all">
-                    💬 WhatsApp
-                  </a>
-                </div>
-              </div>
-            </div>
+  <!-- Product Details -->
+  <div class="p-5 flex flex-col flex-1">
+    <a href="/shop/item/<%= item.id %>" class="block">
+      <h3 class="text-white font-semibold text-sm leading-snug hover:text-brand-400 transition-colors mb-2"><%= item.name %></h3>
+    </a>
+
+    <!-- Price Drop Animation (Feature 7) -->
+    <div class="price-tag text-lg font-bold mb-3 price-animation">
+      <%= data.settings.currencySymbol %> <%= item.price.toLocaleString() %>
+    </div>
+
+    <!-- Live Stock Counter Animation (Feature 1) -->
+    <% if (item.type !== 'service' && item.stock <= 5 && item.stock > 0) { %>
+      <div class="mb-3 stock-counter" data-stock="<%= item.stock %>">
+        <div class="bg-orange-950/50 rounded-full h-1.5 mb-2">
+          <div class="bg-orange-500 h-1.5 rounded-full transition-all duration-500" style="width: <%= (item.stock / 10) * 100 %>%"></div>
+        </div>
+        <span class="badge bg-orange-950 text-orange-400 px-2 py-1 rounded-lg animate-pulse text-xs">
+          🔥 Only <%= item.stock %> left — <span class="stock-number"><%= item.stock %></span>
+        </span>
+      </div>
+    <% } else if (item.type !== 'service' && item.stock === 0) { %>
+      <div class="mb-3">
+        <span class="badge bg-red-950 text-red-400 px-2 py-1 rounded-lg line-through text-xs">
+          ❌ Out of Stock
+        </span>
+      </div>
+    <% } else if (item.type === 'service') { %>
+      <div class="mb-3">
+        <span class="badge bg-purple-950 text-purple-400 px-2 py-1 rounded-lg text-xs">🔧 Service</span>
+      </div>
+    <% } else { %>
+      <div class="mb-3">
+        <span class="badge bg-green-950 text-green-400 px-2 py-1 rounded-lg text-xs">✓ In Stock</span>
+      </div>
+    <% } %>
+
+    <!-- CALL & WHATSAPP BUTTONS -->
+    <div class="mt-auto grid grid-cols-2 gap-2">
+      <a href="tel:+254759697878"
+         class="bg-blue-600 hover:bg-blue-700 text-white text-center py-2.5 rounded-lg text-xs font-medium transition-all">
+        📞 Call
+      </a>
+      <a href="https://wa.me/254759697878?text=Hello%2C%20I'm%20interested%20in%20<%= encodeURIComponent(item.name) %>%20-%20<%= data.settings.currencySymbol %><%= item.price.toLocaleString() %>"
+         target="_blank"
+         class="bg-green-600 hover:bg-green-700 text-white text-center py-2.5 rounded-lg text-xs font-medium transition-all">
+        💬 WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
           <% }); %>
         </div>
       </div>

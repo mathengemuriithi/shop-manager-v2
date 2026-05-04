@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 const { readData } = require("../utils/db");
 const { trackProductView } = require("../utils/analytics");
+const { getAnalytics } = require("../utils/analytics");
 
 // GET /shop
 router.get("/", (req, res) => {
@@ -40,6 +41,14 @@ router.get("/", (req, res) => {
   const paginatedProducts = products.slice(startIndex, endIndex);
   //   // Get product count for the badge
   const productCount = products.length;
+  // In your /item/:id route, add this before res.render:
+  // Get top products for "Visitors Also Viewed"
+  const analytics = getAnalytics();
+  const topProductsIds = analytics.topProducts.map(([id]) => id);
+  const topProducts = topProductsIds
+    .map((id) => data.products.find((p) => p.id === id))
+    .filter((p) => p && p.id !== product.id)
+    .slice(0, 4);
 
   res.render("shop/index", {
     data: data,
@@ -102,6 +111,7 @@ router.get("/item/:id", (req, res) => {
     product: product,
     cat: category,
     recentlyViewed: recentProducts, // ← Add this line
+    topProducts: topProducts, // ← Add this line
   });
 });
 

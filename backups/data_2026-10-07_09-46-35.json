@@ -1,0 +1,456 @@
+{
+  "categories": [
+    {
+      "id": "cat_1",
+      "name": "Laptops",
+      "icon": "💻"
+    },
+    {
+      "id": "cat_2",
+      "name": "Accessories",
+      "icon": "🖱️"
+    },
+    {
+      "id": "cat_3",
+      "name": "Repairs",
+      "icon": "🔧"
+    },
+    {
+      "id": "cat_4",
+      "name": "Software & Installs",
+      "icon": "💿"
+    },
+    {
+      "id": "cat_1770982621256_uoe4m",
+      "name": "Desktops",
+      "icon": "📦"
+    },
+    {
+      "id": "cat_1776947276840_j2urp",
+      "name": "Tablets",
+      "icon": "📦"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_1",
+      "name": "HP EliteBook 840 G8",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 90000,
+      "stock": 10,
+      "sku": "G8",
+      "description": "HP EliteBook 840 G8 14\" Notebook Full HD - 1920 x 1080 - Core i5 (11th Gen) i5-1145G7 - 8 GB RAM - 256 GB M.2 SSD - Intel SoC  Windows 10 Pro - Intel Iris Xe Graphics - English Keyboard\r\nHP EliteBook 840 G8 14\"\r\nCore i5 (11th Gen) i5-1145G7\r\n8 GB RAM - 256 GB M.2 SSD\r\nIntel SoC - Intel Iris Xe Graphics - English Keyboard\r\nWindows 10 Pro",
+      "image": "/uploads/img_1775203942483.jpg",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2026-04-03T08:12:22.631Z"
+    },
+    {
+      "id": "prod_2",
+      "name": "Dell Wireless Mouse",
+      "categoryId": "cat_2",
+      "type": "product",
+      "price": 1800,
+      "stock": 15,
+      "sku": "ACC-DL-001",
+      "description": "2.4GHz Wireless, 3-button scroll",
+      "image": "/uploads/img_1775222096129.webp",
+      "createdAt": "2025-01-02T00:00:00.000Z",
+      "updatedAt": "2026-04-03T13:14:58.481Z"
+    },
+    {
+      "id": "prod_3",
+      "name": "Screen Replacement",
+      "categoryId": "cat_3",
+      "type": "service",
+      "price": 4500,
+      "stock": null,
+      "sku": "SVC-REP-001",
+      "description": "Laptop LCD/LED screen replacement (labour + standard screen)",
+      "image": "/uploads/img_1775223088597.jpg",
+      "createdAt": "2025-01-03T00:00:00.000Z",
+      "updatedAt": "2026-04-03T13:31:29.907Z"
+    },
+    {
+      "id": "prod_4",
+      "name": "Windows 11 Installation",
+      "categoryId": "cat_4",
+      "type": "service",
+      "price": 2500,
+      "stock": null,
+      "sku": "SVC-SW-001",
+      "description": "Clean install with drivers and activation",
+      "image": "/uploads/img_1775223486536.jpg",
+      "createdAt": "2025-01-04T00:00:00.000Z",
+      "updatedAt": "2026-04-03T13:38:06.836Z"
+    },
+    {
+      "id": "prod_1770981932354_70q56",
+      "name": "Docking Station",
+      "categoryId": "cat_2",
+      "type": "product",
+      "price": 2500,
+      "stock": 15,
+      "sku": "DS8in!",
+      "description": "Docking Station with a buying Price of 2,000",
+      "image": "/uploads/img_1775223633323.webp",
+      "createdAt": "2026-02-13T11:25:32.354Z",
+      "updatedAt": "2026-04-03T13:45:52.090Z"
+    },
+    {
+      "id": "prod_1770982030023_agudl",
+      "name": "Hp Elite X2",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 38000,
+      "stock": 10,
+      "sku": "Hp Elite X2",
+      "description": "Brand: HP\r\nModel: Elite X2 G8\r\nType: Detachable laptop / tablet\r\nProcessor: 11th Gen Intel Core i7-1185G7 @ 3.00GHz 3.00GHz\r\nStorage capacity: 512GB SSD\r\nMaximum storage capacity: 4TB SSD\r\nRAM: 16GB\r\nMaximum RAM upgrade: 16GB\r\nSupported OS: Windows 11\r\nBattery health: Excellent \r\nMinimum battery backup: 2 hrs\r\nMaximum battery backup: Depends on usage",
+      "image": "/uploads/img_1775204451142.jpg",
+      "createdAt": "2026-02-13T11:27:10.023Z",
+      "updatedAt": "2026-04-03T08:20:51.152Z"
+    },
+    {
+      "id": "prod_1770982135623_01n7i",
+      "name": "Hp probook Thinclient MT31",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 15000,
+      "stock": 10,
+      "sku": "Hp probook Thinclient MT31",
+      "description": "Brand: HP\r\nModel: ProBook MT31\r\nType: Business laptop / Mobile Thin Client\r\nProcessor: Intel Celeron 3867U @ 1.80GHz (Dual-Core) \r\nStorage capacity: 128GB SSD or 256GB SSD (Varies by configuration) \r\nMaximum storage capacity: 2TB SSD \r\nRAM: 4GB, 8GB, or 16GB (Varies by configuration) \r\nMaximum RAM upgrade: 32GB \r\nSupported OS: Windows 10 Pro / Windows 11 Pro / Windows IoT Enterprise",
+      "image": "/uploads/img_1775204711636.png",
+      "createdAt": "2026-02-13T11:28:55.623Z",
+      "updatedAt": "2026-04-03T08:31:00.359Z"
+    },
+    {
+      "id": "prod_1770982203522_trsp7",
+      "name": "Lenovo Thinkpad yoga 11e",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 14000,
+      "stock": 5,
+      "sku": "Lenovo Thinkpad yoga 11e",
+      "description": "Lenovo Thinkpad yoga 11e\r\n4gbram 128gb ssd\r\nTouch screen x360",
+      "image": "/uploads/img_1775205892465.webp",
+      "createdAt": "2026-02-13T11:30:03.522Z",
+      "updatedAt": "2026-04-03T08:44:52.816Z"
+    },
+    {
+      "id": "prod_1770982450121_7xdji",
+      "name": "Hp 14  Amd Anthlon silver",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 25000,
+      "stock": 5,
+      "sku": "HP14-ATH-SLV-4-128",
+      "description": "Brand: HP\r\nModel: 14 (AMD Athlon Silver series, e.g., 14-fq/14z-em)\r\nType: Clamshell laptop\r\nProcessor: AMD Athlon Silver 3050U or 7120U (2 cores, up to 3.5 GHz)\r\nStorage capacity: 128 GB SSD or 256 GB SSD (typical configs)\r\nMaximum storage capacity: 1 TB SSD (M.2 NVMe slot upgradeable)\r\nRAM: 4 GB DDR4 (onboard/soldered)\r\nMaximum RAM upgrade: 4 GB (non-upgradable, soldered)\r\nSupported OS: Windows 11 Home, Windows 10 S mode, Linux\r\nBattery health: N/A (new: 8 hours typical, 41Wh 3-cell)",
+      "image": "/uploads/img_1775206560925.jpg",
+      "createdAt": "2026-02-13T11:34:10.121Z",
+      "updatedAt": "2026-04-03T08:56:00.972Z"
+    },
+    {
+      "id": "prod_1770982564905_elwwn",
+      "name": "Dell latitude 3190",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 11000,
+      "stock": 5,
+      "sku": "Dell latitude 3190",
+      "description": "Dell Latitude 3190 - First time requested (no repeats tracked).\r\n\r\nBrand: Dell\r\nModel: Latitude 3190 (2-in-1 education laptop)\r\nType: Detachable 2-in-1 laptop/tablet\r\nProcessor: Intel Celeron N4100/N4120 or Pentium Silver N5000 (4 cores, up to 2.7 GHz)\r\nStorage capacity: 64 GB eMMC or 128 GB SSD (typical configs)\r\nMaximum storage capacity: 256 GB SSD (M.2 slot upgradeable)\r\nRAM: 4 GB or 8 GB LPDDR4 (soldered)\r\nMaximum RAM upgrade: 8 GB (non-upgradable beyond factory max)\r\nSupported OS: Windows 10/11 Pro Education, ChromeOS, Linux\r\nBattery health: N/A (new: 8-10 hours typical, 42Wh)",
+      "image": "/uploads/img_1775206824346.webp",
+      "createdAt": "2026-02-13T11:36:04.905Z",
+      "updatedAt": "2026-04-03T09:00:24.445Z"
+    },
+    {
+      "id": "prod_1770982676435_u1ak1",
+      "name": "Hp Engage One 145 POS Coi5 7th Generation 8gb ram 256ssd 14 inches touch screen at",
+      "categoryId": "cat_1770982621256_uoe4m",
+      "type": "product",
+      "price": 32000,
+      "stock": 5,
+      "sku": "",
+      "description": "Hp Engage One 145 POS Coi5 7th Generation 8gb ram 256ssd 14 inches touch screen at 32,000 now available",
+      "image": "/uploads/img_1770982676433.jpeg",
+      "createdAt": "2026-02-13T11:37:56.435Z",
+      "updatedAt": "2026-04-03T12:15:37.990Z"
+    },
+    {
+      "id": "prod_1770982745024_ewr49",
+      "name": "HP 14",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 45000,
+      "stock": 5,
+      "sku": "",
+      "description": "Brand: HP\r\nModel: 14s-dq series (12th Gen i7 config)\r\nType: Clamshell laptop\r\nProcessor: Intel Core i7-1255U (12th Gen, 10 cores, up to 4.7 GHz)\r\nStorage capacity: 256 GB NVMe SSD\r\nMaximum storage capacity: 1 TB SSD (M.2 slot upgradeable)\r\nRAM: 8 GB DDR4-3200\r\nMaximum RAM upgrade: 16 GB (1 slot upgradeable)\r\nSupported OS: Windows 11 Home/Pro, Linux\r\nBattery health: N/A (new: 8-10 hours typical, 45Wh)\r\nSKU / Item Code: HP14-i7-12G-256-8",
+      "image": "/uploads/img_1775207652337.webp",
+      "createdAt": "2026-02-13T11:39:05.024Z",
+      "updatedAt": "2026-04-03T09:14:12.373Z"
+    },
+    {
+      "id": "prod_1770982788620_rccbj",
+      "name": "Lenovo Thinkpad T470",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 17000,
+      "stock": 5,
+      "sku": "",
+      "description": "Lenovo ThinkPad T470\r\nBrand: Lenovo\r\nModel: ThinkPad T470\r\nType: Clamshell business laptop\r\nProcessor: Intel Core i5-7300U/i7-7500U (7th Gen, up to 3.5 GHz)\r\nStorage capacity: 256 GB SSD (typical)\r\nMaximum storage capacity: 1 TB SSD (2x M.2 slots)\r\nRAM: 8 GB DDR4\r\nMaximum RAM upgrade: 32 GB (2 slots)\r\nSupported OS: Windows 10/11 Pro, Linux\r\nBattery health: N/A (new: 14-17 hours typical w/ extended battery)\r\nSKU / Item Code: LEN-T470-i5-256-8",
+      "image": "/uploads/img_1775207959508.jpg",
+      "createdAt": "2026-02-13T11:39:48.620Z",
+      "updatedAt": "2026-04-03T09:19:19.920Z"
+    },
+    {
+      "id": "prod_1770982875815_ugwl9",
+      "name": "Dell Latitude 3310",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 23000,
+      "stock": 5,
+      "sku": "",
+      "description": "Brand: Dell\r\nModel: Latitude 3310\r\nType: 2-in-1 education convertible laptop\r\nProcessor: Intel Core i5-8265U/i5-8365U (8th Gen, 4 cores, up to 3.9 GHz)\r\nStorage capacity: 256 GB NVMe SSD\r\nMaximum storage capacity: 2 TB SSD (M.2 slot)\r\nRAM: 8 GB DDR4\r\nMaximum RAM upgrade: 32 GB (2 slots)\r\nSupported OS: Windows 10/11 Pro Education, Linux\r\nBattery health: N/A (new: 10-12 hours typical, 56Wh)",
+      "image": "/uploads/img_1775222952996.webp",
+      "createdAt": "2026-02-13T11:41:15.815Z",
+      "updatedAt": "2026-04-03T13:29:15.676Z"
+    },
+    {
+      "id": "prod_1770982933130_5mz8c",
+      "name": "Hp Pro X2 612",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 40000,
+      "stock": 5,
+      "sku": "",
+      "description": "HP Pro X2 612\r\nBrand: HP\r\nModel: Pro x2 612 G2\r\nType: Detachable 2-in-1 tablet/laptop\r\nProcessor: Intel Core i5-7Y54 (7th Gen, dual-core, up to 3.2 GHz)\r\nStorage capacity: 256 GB SSD\r\nMaximum storage capacity: 512 GB SSD (M.2 slot)\r\nRAM: 8 GB LPDDR3\r\nMaximum RAM upgrade: 8 GB (soldered)\r\nSupported OS: Windows 10/11 Pro\r\nBattery health: N/A (new: 9-10 hours typical, 42Wh)",
+      "image": "/uploads/img_1775224143947.webp",
+      "createdAt": "2026-02-13T11:42:13.130Z",
+      "updatedAt": "2026-04-03T13:49:07.936Z"
+    },
+    {
+      "id": "prod_1770983063717_mwriu",
+      "name": "Dell Latitude 3190 x360",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 11000,
+      "stock": 5,
+      "sku": "",
+      "description": "Dell Latitude 3190 x360 touch screen intel 4gb ram 128gb ssd at 11,000",
+      "image": "/uploads/img_1770983063715.jpeg",
+      "createdAt": "2026-02-13T11:44:23.717Z",
+      "updatedAt": "2026-04-03T13:50:25.349Z"
+    },
+    {
+      "id": "prod_1770983111704_8h8cb",
+      "name": "Yatai laminator",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 6000,
+      "stock": 5,
+      "sku": "",
+      "description": "Yatai Laminator\r\nBrand: Yatai\r\nModel: YT-320 A3 Laminator\r\nType: Heavy-duty pouch laminating machine",
+      "image": "/uploads/img_1775225424384.jpg",
+      "createdAt": "2026-02-13T11:45:11.704Z",
+      "updatedAt": "2026-04-03T14:13:09.923Z"
+    },
+    {
+      "id": "prod_1770983148610_m5ivr",
+      "name": "Binding Machine",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 7500,
+      "stock": 5,
+      "sku": "",
+      "description": "Binding Machine\r\nBrand: Generic/Office Brands (Fellowes, GBC, Akiles)\r\nModel: Standard Comb Binding Machine\r\nType: Manual document binding equipment",
+      "image": "/uploads/img_1775225294029.jpg",
+      "createdAt": "2026-02-13T11:45:48.610Z",
+      "updatedAt": "2026-04-03T14:13:19.461Z"
+    },
+    {
+      "id": "prod_1770983192229_otdn3",
+      "name": "Hp prodesk 600 G6 MT",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 38000,
+      "stock": 5,
+      "sku": "",
+      "description": "Hp prodesk 600 G6 MT\r\nBrand: HP\r\nModel: ProDesk 600 G6 Microtower\r\nType: Desktop PC (Microtower)\r\nProcessor: Intel Core i5-10500 (10th Gen, 6 cores, up to 4.5 GHz)\r\nStorage capacity: 512 GB NVMe SSD\r\nMaximum storage capacity: 2 TB (multiple drive bays)\r\nRAM: 16 GB DDR4-2666\r\nMaximum RAM upgrade: 64 GB (4 slots)\r\nSupported OS: Windows 10/11 Pro\r\nBattery health: N/A (desktop)",
+      "image": "/uploads/img_1775225187337.jpg",
+      "createdAt": "2026-02-13T11:46:32.229Z",
+      "updatedAt": "2026-04-03T14:13:29.183Z"
+    },
+    {
+      "id": "prod_1770983378269_5py28",
+      "name": "Dell 3380",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 16000,
+      "stock": 5,
+      "sku": "",
+      "description": "Dell 3380\r\nBrand: Dell\r\nModel: Latitude 3380\r\nType: Clamshell education/business laptop\r\nProcessor: Intel Core i5-7200U (7th Gen, dual-core, up to 3.1 GHz)\r\nStorage capacity: 128 GB SSD or 500 GB HDD\r\nMaximum storage capacity: 512 GB SSD\r\nRAM: 8 GB DDR4\r\nMaximum RAM upgrade: 16 GB (1 slot)\r\nSupported OS: Windows 10/11 Pro/Home",
+      "image": "/uploads/img_1770983378261.jpeg",
+      "createdAt": "2026-02-13T11:49:38.269Z",
+      "updatedAt": "2026-04-03T14:04:45.205Z"
+    },
+    {
+      "id": "prod_1770983437634_dcmhw",
+      "name": "Hp elitebook 845GB",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 30000,
+      "stock": 5,
+      "sku": "",
+      "description": "Hp elitebook 845GB \r\n✨AMD Ryzen 5\r\n✨16gb ram 256ssd 14''\r\n✨30,000",
+      "image": "/uploads/img_1770983437628.jpeg",
+      "createdAt": "2026-02-13T11:50:37.634Z",
+      "updatedAt": "2026-04-03T14:13:01.630Z"
+    },
+    {
+      "id": "prod_1770983492054_dypi1",
+      "name": "MICROSOFT SURFACE LAPTOP 3",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 45000,
+      "stock": 5,
+      "sku": "",
+      "description": "MICROSOFT SURFACE LAPTOP 3\r\nBrand: Microsoft\r\nModel: Surface Laptop 3\r\nType: Clamshell premium ultrabook\r\nProcessor: Intel Core i5-1035G7/i7-1065G7 (10th Gen) or AMD Ryzen 5/7 3000 series\r\nStorage capacity: 256 GB SSD\r\nMaximum storage capacity: 1 TB SSD (soldered)\r\nRAM: 8 GB or 16 GB LPDDR4x\r\nMaximum RAM upgrade: None (soldered)\r\nSupported OS: Windows 10/11 Home/Pro",
+      "image": "/uploads/img_1770983492050.jpeg",
+      "createdAt": "2026-02-13T11:51:32.054Z",
+      "updatedAt": "2026-04-03T14:03:47.698Z"
+    },
+    {
+      "id": "prod_1770983869685_qguk3",
+      "name": "Lenovo chromebook 500e",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 7500,
+      "stock": 5,
+      "sku": "",
+      "description": "Lenovo chromebook 500e with 4gb 32gb\r\nX360 Touch screen\r\nAt  7500",
+      "image": "/uploads/img_1770983869682.jpeg",
+      "createdAt": "2026-02-13T11:57:49.685Z",
+      "updatedAt": "2026-04-03T14:03:01.253Z"
+    },
+    {
+      "id": "prod_1770983914470_mhw2h",
+      "name": "HP-Thin Client M131",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 15000,
+      "stock": 5,
+      "sku": "",
+      "description": "HP-Thin Client M131\r\nBrand: HP\r\nModel: Thin Client M131 (likely mt31 Mobile Thin Client)\r\nType: Mobile thin client laptop\r\nProcessor: Intel Celeron 3867U (dual-core, 1.8 GHz)\r\nStorage capacity: 128 GB M.2 SSD\r\nMaximum storage capacity: 256 GB M.2 SSD\r\nRAM: 4 GB DDR4-2133\r\nMaximum RAM upgrade: 8 GB (2 SODIMM slots)\r\nSupported OS: Windows 10 IoT Enterprise, HP ThinPro\r\nBattery health: N/A (new: 8-10 hours typical)",
+      "image": "/uploads/img_1770983914468.jpeg",
+      "createdAt": "2026-02-13T11:58:34.470Z",
+      "updatedAt": "2026-04-03T14:01:24.007Z"
+    },
+    {
+      "id": "prod_1770983968974_w2msi",
+      "name": "Hp Elitebook 840 G5",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 33000,
+      "stock": 15,
+      "sku": "",
+      "description": "HP EliteBook 840 G5\r\nBrand: HP\r\nModel: EliteBook 840 G5\r\nType: Clamshell business ultrabook\r\nProcessor: Intel Core i5-8250U/i7-8650U (8th Gen, 4 cores, up to 4.2 GHz)\r\nStorage capacity: 256 GB SSD (typical NVMe PCIe)\r\nMaximum storage capacity: 1 TB SSD (M.2 slot)\r\nRAM: 16 GB DDR4-2400\r\nMaximum RAM upgrade: 32 GB (2 SODIMM slots)\r\nSupported OS: Windows 10/11 Pro, Linux Ubuntu\r\nBattery health: N/A (new: 10-14 hours typical, 50Wh)\r\nSKU / Item Code: HP-ELB840G5-i7-256-1",
+      "image": "/uploads/img_1775222717012.webp",
+      "createdAt": "2026-02-13T11:59:28.974Z",
+      "updatedAt": "2026-04-03T13:25:25.322Z"
+    },
+    {
+      "id": "prod_1770984032637_hwwfo",
+      "name": "Dell latitude 3310",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 23000,
+      "stock": 5,
+      "sku": "",
+      "description": "Dell latitude 3310\r\n8gb ram 256ssd\r\n@23,000",
+      "image": "/uploads/img_1775224625059.webp",
+      "createdAt": "2026-02-13T12:00:32.637Z",
+      "updatedAt": "2026-04-03T13:57:08.167Z"
+    },
+    {
+      "id": "prod_1770984144688_iin0n",
+      "name": "Hp elitebook 840 G7",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 28500,
+      "stock": 5,
+      "sku": "",
+      "description": "HP EliteBook 840 G7\r\nBrand: HP\r\nModel: EliteBook 840 G7\r\nType: Clamshell business ultrabook\r\nProcessor: Intel Core i5-10210U/i7-10810U (10th Gen, up to 4.9 GHz)\r\nStorage capacity: 256 GB NVMe SSD\r\nMaximum storage capacity: 2 TB SSD (M.2 PCIe slot)\r\nRAM: 8 GB DDR4\r\nMaximum RAM upgrade: 64 GB (2 SODIMM slots)\r\nSupported OS: Windows 10/11 Pro, Linux\r\nBattery health: N/A (new: 15-19 hours typical, 53Wh)",
+      "image": "/uploads/img_1775224403406.webp",
+      "createdAt": "2026-02-13T12:02:24.688Z",
+      "updatedAt": "2026-04-03T13:53:28.573Z"
+    },
+    {
+      "id": "prod_1770984218014_m833z",
+      "name": "Hp probook 640 G5",
+      "categoryId": "cat_1",
+      "type": "product",
+      "price": 22000,
+      "stock": 10,
+      "sku": "",
+      "description": "HP ProBook 640 G5\r\nBrand: HP\r\nModel: ProBook 640 G5\r\nType: Clamshell business laptop\r\nProcessor: Intel Core i5-8265U/i5-8365U (8th Gen, 4 cores, up to 3.9 GHz)\r\nStorage capacity: 256 GB SSD\r\nMaximum storage capacity: 1 TB SSD (M.2 NVMe slot)\r\nRAM: 8 GB DDR4-2400\r\nMaximum RAM upgrade: 32 GB (2 slots)\r\nSupported OS: Windows 10/11 Pro, Linux\r\nBattery health: N/A (new: 13 hours typical, 48Wh)\r\nSKU / Item Code: HP-PB640G5-i5-256-8",
+      "image": "/uploads/img_1775223916735.webp",
+      "createdAt": "2026-02-13T12:03:38.014Z",
+      "updatedAt": "2026-04-03T13:45:17.385Z"
+    },
+    {
+      "id": "prod_1771323467662_a0ro5",
+      "name": "Hp Elite tower 600 G9",
+      "categoryId": "cat_1770982621256_uoe4m",
+      "type": "product",
+      "price": 43000,
+      "stock": 5,
+      "sku": "",
+      "description": "😋 Hp Elite tower 600 G9\r\n😋 3.1 GHZ SPEED COI5\r\n😋 16GB RAM 1TB HDD\r\n😋 12 GENERATION\r\n😋 43,000",
+      "image": "/uploads/img_1771323467645.jpeg",
+      "createdAt": "2026-02-17T10:17:47.662Z",
+      "updatedAt": "2026-04-03T12:14:57.558Z"
+    },
+    {
+      "id": "prod_1776950451780_gxr05",
+      "name": "Modio M56",
+      "categoryId": "cat_1776947276840_j2urp",
+      "type": "product",
+      "price": 7500,
+      "stock": 10,
+      "sku": "Modio M56",
+      "description": "6GB RAM and 128GB Storage:\r\n3000mAh Battery:\r\nDual Camera:\r\nAndroid OS.\r\n7-inch Display:\r\n MicroSD up to 32GB",
+      "image": "/uploads/img_1776950451759.jpg",
+      "createdAt": "2026-04-23T13:20:51.780Z"
+    }
+  ],
+  "settings": {
+    "shopName": "ECSIMS",
+    "currency": "KES",
+    "currencySymbol": "KSh"
+  },
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "mathenge",
+      "password": "Passcode2025",
+      "role": "superadmin"
+    },
+    {
+      "id": 3,
+      "username": "trevor",
+      "password": "Passcode2022",
+      "role": "superadmin"
+    },
+    {
+      "id": 4,
+      "username": "Trevor",
+      "password": "Passcode2022",
+      "role": "superadmin"
+    }
+  ]
+}

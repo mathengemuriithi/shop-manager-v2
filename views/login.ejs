@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | <%= shopName %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: #060b14;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .login-card {
+      background: linear-gradient(145deg, #0d1526, #0a1020);
+      border: 1px solid rgba(56,189,248,0.15);
+      box-shadow: 0 0 60px rgba(14,165,233,0.07), 0 25px 50px rgba(0,0,0,0.5);
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .input-field {
+      background: rgba(10,20,40,0.8);
+      border: 1px solid rgba(56,189,248,0.15);
+      color: #e2e8f0;
+      transition: all 0.2s;
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.1);
+    }
+    .input-field::placeholder { color: #334155; }
+    .btn-login {
+      background: linear-gradient(135deg, #0ea5e9, #0369a1);
+      transition: all 0.25s;
+      letter-spacing: 0.05em;
+    }
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(14,165,233,0.4);
+    }
+    .btn-login:active { transform: translateY(0); }
+    .glow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 12px #38bdf8;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .label-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: #38bdf8;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body class="min-h-screen grid-bg flex items-center justify-center p-4">
+
+  <!-- Background accent blobs -->
+  <div style="position:fixed;top:-100px;left:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,0.07),transparent 70%);pointer-events:none;"></div>
+  <div style="position:fixed;bottom:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,0.05),transparent 70%);pointer-events:none;"></div>
+
+  <div class="login-card rounded-2xl w-full max-w-md p-10">
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-5 text-3xl"
+           style="background:linear-gradient(135deg,#0ea5e9,#0369a1);box-shadow:0 8px 25px rgba(14,165,233,0.3);">
+        🖥️
+      </div>
+      <h1 class="text-2xl font-bold text-white mb-1"><%= shopName %></h1>
+      <div class="flex items-center justify-center gap-2">
+        <div class="glow-dot"></div>
+        <span class="label-tag">Admin Panel</span>
+      </div>
+    </div>
+
+    <!-- Flash error -->
+    <% if (error && error.length) { %>
+    <div class="mb-6 flex items-center gap-3 px-4 py-3 rounded-xl text-sm"
+         style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;">
+      ⚠️ <%= error[0] %>
+    </div>
+    <% } %>
+    <% if (success && success.length) { %>
+    <div class="mb-6 flex items-center gap-3 px-4 py-3 rounded-xl text-sm"
+         style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);color:#86efac;">
+      ✅ <%= success[0] %>
+    </div>
+    <% } %>
+
+    <!-- Form -->
+    <form method="POST" action="/login" class="space-y-5">
+      <div>
+        <label class="label-tag block mb-2">Username</label>
+        <input
+          type="text" name="username" required
+          placeholder="Enter your username"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm"
+        />
+      </div>
+      <div>
+        <label class="label-tag block mb-2">Password</label>
+        <input
+          type="password" name="password" required
+          placeholder="••••••••••"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm"
+        />
+      </div>
+      <button type="submit" class="btn-login w-full py-3.5 rounded-xl text-white font-semibold text-sm mt-2">
+        Access Dashboard →
+      </button>
+    </form>
+
+    <p class="text-center text-slate-600 text-xs mt-8">
+      TechPoint Shop Manager • Localhost Edition
+    </p>
+  </div>
+</body>
+</html>

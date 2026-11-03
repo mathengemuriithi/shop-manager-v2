@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particles Swarm Export</title>
+    <style>body { margin: 0; overflow: hidden; background: #000; }</style>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        // CONFIG
+        const COUNT = 20000;
+        const SPEED_MULT = 1;
+        const AUTO_SPIN = true;
+
+        // SETUP
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x000000, 0.01);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.set(0, 0, 100);
+        
+        const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = AUTO_SPIN;
+        controls.autoRotateSpeed = 2.0;
+
+        // POST PROCESSING
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.strength = 1.8; bloomPass.radius = 0.4; bloomPass.threshold = 0;
+        composer.addPass(bloomPass);
+
+        // SWARM OBJECTS
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+        const target = new THREE.Vector3();
+        const pColor = new THREE.Color(); // Kept for safety, for potential references
+        
+        // INSTANCED MESH
+        const geometry = new THREE.TetrahedronGeometry(0.25);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        
+        const instancedMesh = new THREE.InstancedMesh(geometry, material, COUNT);
+        instancedMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        scene.add(instancedMesh);
+
+        // DATA ARRAYS
+        const positions = [];
+        for(let i=0; i<COUNT; i++) {
+            positions.push(new THREE.Vector3((Math.random()-0.5)*100, (Math.random()-0.5)*100, (Math.random()-0.5)*100));
+            instancedMesh.setColorAt(i, color.setHex(0x00ff88)); // Init Color
+        }
+
+        // CONTROL STUBS
+        const PARAMS = {"cycle":10,"bScale":16,"scatterRadius":160,"drift":0.6,"flowerCount":10,"fieldSpread":110,"fieldCenterY":0,"flowerSize":7,"flapSpeed":6,"flapAmp":0.55};
+        const addControl = (id, label, min, max, val) => {
+            return PARAMS[id] !== undefined ? PARAMS[id] : val;
+        };
+        const setInfo = () => {};
+        const annotate = () => {};
+
+        // ANIMATION LOOP
+        const clock = new THREE.Clock();
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            const delta = clock.getDelta();
+            const time = clock.getElapsedTime() * SPEED_MULT;
+            
+            // Shader Time Update
+            if(material.uniforms && material.uniforms.uTime) {
+                material.uniforms.uTime.value = time;
+            }
+
+            controls.update();
+
+            // SWARM LOGIC
+            const count = COUNT; // Alias for user code compatibility
+            for(let i=0; i<COUNT; i++) {
+                 // USER CODE INJECTION START
+                 // ---- Global timing ----
+                 const safeCount = count > 0 ? count : 1;
+                 const cycle = addControl("cycle", "Cycle Length (s)", 4, 20, 10);
+                 const bScale = addControl("bScale", "Butterfly Size", 6, 30, 16);
+                 const scatterRadius = addControl("scatterRadius", "Scatter Spread", 40, 300, 160);
+                 const driftStrength = addControl("drift", "Scatter Drift", 0, 1, 0.6);
+                 const flowerCount = addControl("flowerCount", "Flower Count", 4, 18, 10);
+                 const fieldSpread = addControl("fieldSpread", "Field Radius", 30, 220, 110);
+                 const fieldCenterY = addControl("fieldCenterY", "Field Center Height", -60, 60, 0);
+                 const flowerSize = addControl("flowerSize", "Flower Size", 3, 14, 7);
+                 const flapSpeed = addControl("flapSpeed", "Flap Speed", 1, 12, 6);
+                 const flapAmp = addControl("flapAmp", "Flap Amount", 0.1, 1.2, 0.55);
+                 
+                 const safeCycle = cycle > 0.001 ? cycle : 4;
+                 const phase = (time % safeCycle) / safeCycle;
+                 const progress = 0.5 - 0.5 * Math.cos(phase * 2.0 * Math.PI);
+                 const flapAngle = Math.sin(time * flapSpeed) * flapAmp * progress;
+                 const deg = Math.PI / 180.0;
+                 const u = i / safeCount;
+                 
+                 // ---- Scatter cloud: a soft Gaussian ball (Box-Muller) instead of a hard
+                 // cube, plus a gentle per-particle drift so it never looks frozen. ----
+                 const gh1 = Math.sin(i * 12.9898) * 43758.5453;
+                 const gu1 = Math.max(1e-6, gh1 - Math.floor(gh1));
+                 const gh2 = Math.sin(i * 78.233) * 12543.987;
+                 const gu2 = gh2 - Math.floor(gh2);
+                 const gh3 = Math.sin(i * 39.346) * 25563.641;
+                 const gu3 = Math.max(1e-6, gh3 - Math.floor(gh3));
+                 const gh4 = Math.sin(i * 54.716) * 31415.926;
+                 const gu4 = gh4 - Math.floor(gh4);
+                 const gRadius1 = Math.sqrt(-2.0 * Math.log(gu1));
+                 const gx = gRadius1 * Math.cos(2.0 * Math.PI * gu2);
+                 const gy = gRadius1 * Math.sin(2.0 * Math.PI * gu2);
+                 const gRadius2 = Math.sqrt(-2.0 * Math.log(gu3));
+                 const gz = gRadius2 * Math.cos(2.0 * Math.PI * gu4);
+                 
+                 const sigma = scatterRadius / 3.0;
+                 const driftH = Math.sin(i * 6.283) * 9999.123;
+                 const driftPhase = (driftH - Math.floor(driftH)) * 2.0 * Math.PI;
+                 const driftAmp = sigma * 0.08 * driftStrength;
+                 
+                 const sx = gx * sigma + Math.sin(time * 0.3 + driftPhase) * driftAmp;
+                 const sy = gy * sigma + Math.cos(time * 0.25 + driftPhase * 1.3) * driftAmp;
+                 const sz = gz * sigma + Math.sin(time * 0.2 + driftPhase * 0.7) * driftAmp;
+                 
+                 // ---- Butterfly's own blue-to-amber blend (shared by all its regions) ----
+                 const bfBr = 0.243, bfBg = 0.651, bfBb = 1.0;
+                 const bfAr = 0.910, bfAg = 0.639, bfAb = 0.239;
+                 const bfColR = bfBr + (bfAr - bfBr) * progress;
+                 const bfColG = bfBg + (bfAg - bfBg) * progress;
+                 const bfColB = bfBb + (bfAb - bfBb) * progress;
+                 
+                 let bx = 0.0, by = 0.0, bz = 0.0;
+                 let colBaseR = bfColR, colBaseG = bfColG, colBaseB = bfColB;
+                 
+                 // ---- Region selection: 6 wing/tail lobes, a body, or (past 0.62) a flower ----
+                 let regCx = 0.0, regCy = -0.05, regEa = 0.06, regEb = 0.68, regAngle = 0.0, isWing = 0.0;
+                 if (u < 0.19344) {
+                   regCx = 0.72; regCy = 0.52; regEa = 0.775; regEb = 0.425; regAngle = 32.0 * deg; isWing = 1.0;
+                 } else if (u < 0.38688) {
+                   regCx = -0.72; regCy = 0.52; regEa = 0.775; regEb = 0.425; regAngle = -32.0 * deg; isWing = 1.0;
+                 } else if (u < 0.49476) {
+                   regCx = 0.62; regCy = -0.28; regEa = 0.525; regEb = 0.35; regAngle = -28.0 * deg; isWing = 1.0;
+                 } else if (u < 0.60264) {
+                   regCx = -0.62; regCy = -0.28; regEa = 0.525; regEb = 0.35; regAngle = 28.0 * deg; isWing = 1.0;
+                 } else if (u < 0.607476) {
+                   regCx = 1.18; regCy = -0.62; regEa = 0.15; regEb = 0.055; regAngle = -55.0 * deg; isWing = 1.0;
+                 } else if (u < 0.612312) {
+                   regCx = -1.18; regCy = -0.62; regEa = 0.15; regEb = 0.055; regAngle = 55.0 * deg; isWing = 1.0;
+                 }
+                 
+                 if (u < 0.62) {
+                   const hr = Math.sin(i * 91.345) * 10000.0;
+                   const rFrac = hr - Math.floor(hr);
+                   const hp = Math.sin(i * 57.234) * 20000.0;
+                   const phiFrac = hp - Math.floor(hp);
+                   const radiusFrac = Math.sqrt(rFrac);
+                   const phi = phiFrac * 2.0 * Math.PI;
+                   const localX = radiusFrac * regEa * Math.cos(phi);
+                   const localY = radiusFrac * regEb * Math.sin(phi);
+                   const cosA = Math.cos(regAngle);
+                   const sinA = Math.sin(regAngle);
+                   const wingLocalX = regCx + localX * cosA - localY * sinA;
+                   const wingLocalY = regCy + localX * sinA + localY * cosA;
+                   bx = wingLocalX * bScale;
+                   by = wingLocalY * bScale;
+                   bz = Math.abs(wingLocalX) * Math.sin(flapAngle) * bScale * isWing;
+                   colBaseR = bfColR;
+                   colBaseG = bfColG;
+                   colBaseB = bfColB;
+                 } else {
+                   const flowerU = (u - 0.62) / 0.38;
+                   const flowerFloat = flowerU * flowerCount;
+                   const flowerIndex = Math.floor(flowerFloat);
+                 
+                   const th1 = Math.sin(i * 63.71) * 10000.0;
+                   const theta = (th1 - Math.floor(th1)) * 2.0 * Math.PI;
+                   const th2 = Math.sin(i * 84.19) * 10000.0;
+                   const rr = th2 - Math.floor(th2);
+                   const petalR = Math.abs(Math.cos(5.0 * theta)) * flowerSize;
+                   const radiusFrac2 = Math.sqrt(rr);
+                   const petalX = radiusFrac2 * petalR * Math.cos(theta);
+                   const petalY = radiusFrac2 * petalR * Math.sin(theta);
+                 
+                   // Flower centers on a spherical shell all around the butterfly - every
+                   // direction and height, not just a flat plane underneath it.
+                   const fh1 = Math.sin(flowerIndex * 17.53 + 11.1) * 10000.0;
+                   const fhTheta = (fh1 - Math.floor(fh1)) * 2.0 * Math.PI;
+                   const fh2 = Math.sin(flowerIndex * 29.13 + 7.7) * 10000.0;
+                   const fhCosPhi = (fh2 - Math.floor(fh2)) * 2.0 - 1.0;
+                   const fhSinPhi = Math.sqrt(Math.max(0.0, 1.0 - fhCosPhi * fhCosPhi));
+                   const fh3 = Math.sin(flowerIndex * 41.91 + 3.3) * 10000.0;
+                   const fhJitter = fh3 - Math.floor(fh3);
+                   const shellR = fieldSpread * (0.65 + 0.35 * fhJitter);
+                   const fieldX = shellR * fhSinPhi * Math.cos(fhTheta);
+                   const fieldZ = shellR * fhSinPhi * Math.sin(fhTheta);
+                   const fieldY = shellR * fhCosPhi + fieldCenterY;
+                 
+                   bx = fieldX + petalX * progress;
+                   by = fieldY + petalY * progress;
+                   bz = fieldZ;
+                 
+                   const fyR = 0.976, fyG = 0.827, fyB = 0.325;
+                   const fpR = 0.976, fpG = 0.416, fpB = 0.686;
+                   colBaseR = fyR + (fpR - fyR) * radiusFrac2;
+                   colBaseG = fyG + (fpG - fyG) * radiusFrac2;
+                   colBaseB = fyB + (fpB - fyB) * radiusFrac2;
+                 }
+                 
+                 // ---- Scatter -> target, with a slow ambient rotation of the whole scene ----
+                 const px = sx + (bx - sx) * progress;
+                 const py = sy + (by - sy) * progress;
+                 const pz = sz + (bz - sz) * progress;
+                 
+                 const rot = time * 0.05;
+                 const cosr = Math.cos(rot);
+                 const sinr = Math.sin(rot);
+                 const finalX = px * cosr - pz * sinr;
+                 const finalZ = px * sinr + pz * cosr;
+                 target.set(finalX, py, finalZ);
+                 
+                 const s4 = Math.sin(i * 3.1415) * 4321.1234;
+                 const shimmerPhase = (s4 - Math.floor(s4)) * 2.0 * Math.PI;
+                 const glow = 0.85 + 0.15 * Math.sin(time * 2.0 + shimmerPhase);
+                 const outR = Math.min(1.0, colBaseR * glow);
+                 const outG = Math.min(1.0, colBaseG * glow);
+                 const outB = Math.min(1.0, colBaseB * glow);
+                 color.setRGB(outR, outG, outB);
+                 
+                 if (i === 0) {
+                   setInfo("Butterfly in a Garden", "Scattered particles bloom into a butterfly surrounded by flowers, then dissolve again.");
+                 }
+                 // USER CODE INJECTION END
+
+                 // LERP & UPDATE
+                 positions[i].lerp(target, 0.1);
+                 dummy.position.copy(positions[i]);
+                 dummy.updateMatrix();
+                 instancedMesh.setMatrixAt(i, dummy.matrix);
+                 instancedMesh.setColorAt(i, color); // Fix: Use 'color' which user modifies
+            }
+            instancedMesh.instanceMatrix.needsUpdate = true;
+            instancedMesh.instanceColor.needsUpdate = true;
+
+            composer.render();
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

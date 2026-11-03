@@ -1,0 +1,89 @@
+<%- include('../partials/layout-top', { title: 'Analytics Dashboard', data, username, messages }) %>
+
+<div class="mb-6">
+  <h1 class="text-2xl font-bold text-white">📊 Analytics Dashboard</h1>
+  <p class="text-slate-500 text-sm">Track your shop's performance</p>
+</div>
+
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+  <div class="card rounded-xl p-5">
+    <div class="text-slate-500 text-sm mb-1">Total Lifetime Views</div>
+    <div class="text-3xl font-bold text-white"><%= analytics.lifetime.totalViews.toLocaleString() %></div>
+  </div>
+
+  <div class="card rounded-xl p-5">
+    <div class="text-slate-500 text-sm mb-1">Unique Visitors</div>
+    <div class="text-3xl font-bold text-white"><%= analytics.lifetime.uniqueVisitors.toLocaleString() %></div>
+  </div>
+
+  <div class="card rounded-xl p-5">
+    <div class="text-slate-500 text-sm mb-1">This Month Views</div>
+    <div class="text-3xl font-bold text-white"><%= analytics.currentMonth.totalViews.toLocaleString() %></div>
+  </div>
+
+  <div class="card rounded-xl p-5">
+    <div class="text-slate-500 text-sm mb-1">This Month Visitors</div>
+    <div class="text-3xl font-bold text-white"><%= analytics.currentMonth.uniqueVisitors.toLocaleString() %></div>
+  </div>
+</div>
+
+<!-- Top Products -->
+<div class="card rounded-xl p-5 mb-8">
+  <h2 class="text-lg font-bold text-white mb-4">🏆 Most Viewed Products</h2>
+  <% if (topProducts.length === 0) { %>
+    <p class="text-slate-500 text-sm">No product views yet.</p>
+  <% } else { %>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-blue-900/30">
+            <th class="text-left py-3 text-slate-500">Product</th>
+            <th class="text-right py-3 text-slate-500">Views</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% topProducts.forEach(([productId, views]) => {
+            const product = data.products.find(p => p.id === productId);
+          %>
+            <tr class="border-b border-blue-900/20">
+              <td class="py-3 text-white"><%= product ? product.name : productId %></td>
+              <td class="py-3 text-right text-brand-400"><%= views.toLocaleString() %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</div>
+
+<!-- Monthly Summary -->
+<div class="card rounded-xl p-5">
+  <h2 class="text-lg font-bold text-white mb-4">📅 Monthly Summary</h2>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-blue-900/30">
+          <th class="text-left py-3 text-slate-500">Month</th>
+          <th class="text-right py-3 text-slate-500">Views</th>
+          <th class="text-right py-3 text-slate-500">Unique Visitors</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% monthlyData.forEach(([month, data]) => { %>
+          <tr class="border-b border-blue-900/20">
+            <td class="py-3 text-white"><%= month %></td>
+            <td class="py-3 text-right text-slate-300"><%= data.totalViews.toLocaleString() %></td>
+            <td class="py-3 text-right text-slate-300"><%= data.uniqueVisitors.toLocaleString() %></td>
+           </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="mt-6">
+  <a href="/admin" class="text-sm text-brand-400 hover:text-brand-300">← Back to Dashboard</a>
+</div>
+
+<%- include('../partials/layout-bottom') %>

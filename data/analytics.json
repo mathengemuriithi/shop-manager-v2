@@ -1,0 +1,84 @@
+{
+  "lifetime": {
+    "totalViews": 128,
+    "uniqueVisitors": 36
+  },
+  "monthly": {
+    "2026-04": {
+      "uniqueVisitors": 2,
+      "totalViews": 8,
+      "productViews": {}
+    },
+    "2026-05": {
+      "uniqueVisitors": 7,
+      "totalViews": 19,
+      "productViews": {
+        "prod_1770982030023_agudl": 2,
+        "prod_3": 1,
+        "prod_2": 1,
+        "prod_1770982203522_trsp7": 1,
+        "prod_1770982676435_u1ak1": 1,
+        "prod_1": 1,
+        "prod_4": 1
+      }
+    },
+    "2026-09": {
+      "uniqueVisitors": 3,
+      "totalViews": 5,
+      "productViews": {}
+    },
+    "2026-10": {
+      "uniqueVisitors": 13,
+      "totalViews": 67,
+      "productViews": {}
+    },
+    "2026-11": {
+      "uniqueVisitors": 11,
+      "totalViews": 29,
+      "productViews": {}
+    }
+  },
+  "productViews": {
+    "prod_1770982030023_agudl": 2,
+    "prod_3": 1,
+    "prod_2": 1,
+    "prod_1770982203522_trsp7": 1,
+    "prod_1770982676435_u1ak1": 1,
+    "prod_1": 1,
+    "prod_4": 1
+  },
+  "dailyVisits": [
+    {
+      "date": "2026-04-23",
+      "views": 8
+    },
+    {
+      "date": "2026-05-04",
+      "views": 19
+    },
+    {
+      "date": "2026-09-26",
+      "views": 3
+    },
+    {
+      "date": "2026-09-28",
+      "views": 2
+    },
+    {
+      "date": "2026-10-01",
+      "views": 37
+    },
+    {
+      "date": "2026-10-02",
+      "views": 22
+    },
+    {
+      "date": "2026-10-07",
+      "views": 8
+    },
+    {
+      "date": "2026-11-03",
+      "views": 29
+    }
+  ]
+}

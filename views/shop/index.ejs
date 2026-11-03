@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= data.settings.shopName %> — Products & Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { background: #060c18; font-family: 'Space Grotesk', sans-serif; }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .nav-bar {
+      background: rgba(6,12,24,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(56,189,248,0.08);
+    }
+    .hero-glow {
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(14,165,233,0.12), transparent);
+    }
+    .search-bar {
+      background: rgba(13,21,38,0.9);
+      border: 1px solid rgba(56,189,248,0.15);
+      color: #e2e8f0;
+      transition: all 0.2s;
+    }
+    .search-bar:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56,189,248,0.1); }
+    .search-bar::placeholder { color: #334155; }
+
+    .cat-pill {
+      background: rgba(13,21,38,0.8);
+      border: 1px solid rgba(56,189,248,0.1);
+      color: #64748b;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: rgba(56,189,248,0.1);
+      border-color: rgba(56,189,248,0.4);
+      color: #38bdf8;
+    }
+
+    .product-card {
+      background: linear-gradient(145deg, #0d1526, #0a1020);
+      border: 1px solid rgba(56,189,248,0.08);
+      transition: all 0.25s ease;
+    }
+    .product-card:hover {
+      border-color: rgba(56,189,248,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(14,165,233,0.1);
+    }
+    .price-tag {
+      font-family: 'JetBrains Mono', monospace;
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .badge { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; }
+    .img-placeholder {
+      background: linear-gradient(135deg, rgba(14,165,233,0.06), rgba(3,105,161,0.06));
+      border-bottom: 1px solid rgba(56,189,248,0.06);
+    }
+    .section-divider {
+      border-color: rgba(56,189,248,0.08);
+    }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #060c18; }
+    ::-webkit-scrollbar-thumb { background: #1e3a6e; border-radius: 3px; }
+
+    .fade-in { animation: fadeIn 0.4s ease both; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  </style>
+</head>
+<body class="min-h-screen grid-bg text-slate-300">
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────────────────── -->
+  <nav class="nav-bar sticky top-0 z-50 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="/shop" class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-lg"
+             style="background:linear-gradient(135deg,#0ea5e9,#0369a1);box-shadow:0 4px 15px rgba(14,165,233,0.3);">
+          🖥️
+        </div>
+        <div>
+          <div class="font-bold text-white text-sm leading-tight"><%= data.settings.shopName %></div>
+          <div class="text-xs text-slate-600">Laptops & All Computer and Accessories Shop</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-4">
+        <span class="hidden sm:flex items-center gap-1.5 text-xs text-slate-600">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" style="box-shadow:0 0 6px #4ade80;"></span>
+          Open for business
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ────────────────────────────────────────────────────────────── -->
+  <div class="hero-glow pt-14 pb-10 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-900 to-indigo-900 text-white px-5 py-2.5 rounded-full mb-5 border border-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer group"
+     onclick="window.location.href='/shop'">
+
+  <svg class="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+  </svg>
+
+  <span class="font-semibold tracking-wide">Browse Our Catalogue</span>
+
+  <% if (typeof productCount !== 'undefined') { %>
+    <span class="ml-1 bg-blue-800 text-xs px-2 py-0.5 rounded-full"><%= productCount %> items</span>
+  <% } %>
+
+  <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+  </svg>
+</div>
+      <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">
+        Laptops,Computers, Parts &<br/>
+        <span style="background:linear-gradient(135deg,#38bdf8,#0284c7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+          Repair Services
+        </span>
+      </h1>
+      <p class="text-slate-500 text-base max-w-lg mx-auto">
+        Browse our full range of products and services. Contact us to place an order or book a repair.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── SEARCH + FILTER ────────────────────────────────────────────────── -->
+  <div class="max-w-7xl mx-auto px-6 pb-8">
+    <form method="GET" action="/shop" class="flex flex-col sm:flex-row gap-3">
+      <div class="relative flex-1">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 text-sm">🔍</span>
+        <input
+          type="text" name="search"
+          value="<%= filters.search %>"
+          placeholder="Search products and services…"
+          class="search-bar w-full pl-10 pr-4 py-3 rounded-xl text-sm"
+        />
+      </div>
+      <% if (filters.search || filters.category) { %>
+        <a href="/shop" class="flex items-center justify-center px-5 py-3 rounded-xl text-sm text-slate-400 hover:text-white transition-colors"
+           style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);">
+          ✕ Clear
+        </a>
+      <% } %>
+    </form>
+
+    <!-- Category Pills -->
+    <div class="flex flex-wrap gap-2 mt-4">
+      <a href="/shop<%= filters.search ? '?search=' + filters.search : '' %>"
+         class="cat-pill px-4 py-2 rounded-full text-sm font-medium <%= !filters.category ? 'active' : '' %>">
+        All
+      </a>
+      <% data.categories.forEach(cat => { %>
+        <a href="/shop?category=<%= cat.id %><%= filters.search ? '&search=' + filters.search : '' %>"
+           class="cat-pill px-4 py-2 rounded-full text-sm font-medium <%= filters.category === cat.id ? 'active' : '' %>">
+          <%= cat.icon %> <%= cat.name %>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+
+  <!-- ── ALL PRODUCTS GRID (SIMPLIFIED - SHOWS EVERYTHING) ────────────────── -->
+  <main class="max-w-7xl mx-auto px-6 pb-20">
+
+  <% if (products.length === 0) { %>
+    <div class="text-center py-20">
+      <div class="text-5xl mb-4">🔍</div>
+      <p class="text-slate-500 text-lg">No items found.</p>
+      <a href="/shop" class="text-sm text-brand-400 mt-2 inline-block hover:text-brand-300">Clear search →</a>
+    </div>
+  <% } else { %>
+    <div class="mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-white">All Products (<%= products.length %>)</h2>
+        <!-- Optional: Add sorting dropdown here later -->
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <% products.forEach(function(item) { %>
+          <div class="product-card rounded-xl overflow-hidden flex flex-col relative">
+
+            <!-- Bestseller Badge -->
+            <% if (topProductId && item.id === topProductId) { %>
+              <div class="absolute top-2 left-2 z-10 bg-amber-500 text-black text-xs font-bold px-2 py-0.5 rounded-full shadow-lg">
+                🔥 Bestseller
+              </div>
+            <% } %>
+
+            <!-- Last Chance Badge -->
+            <% if (item.type !== 'service' && item.stock <= 3 && item.stock > 0) { %>
+              <div class="absolute top-2 right-2 z-10 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full animate-pulse shadow-lg">
+                ⚡ Last Chance
+              </div>
+            <% } %>
+
+            <!-- Product Image -->
+            <a href="/shop/item/<%= item.id %>" class="block">
+              <div class="h-36 img-placeholder flex items-center justify-center overflow-hidden relative bg-slate-900">
+                <% if (item.image) { %>
+                  <img src="<%= item.image %>" class="w-full h-full object-cover" />
+                <% } else { %>
+                  <span class="text-4xl opacity-30"><%= item.type === 'service' ? '🔧' : '📦' %></span>
+                <% } %>
+
+                <!-- Out of Stock Overlay -->
+                <% if (item.type !== 'service' && item.stock === 0) { %>
+                  <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
+                    <span class="text-white font-bold text-xs rotate-12 bg-red-600 px-2 py-0.5 rounded">SOLD OUT</span>
+                  </div>
+                <% } %>
+              </div>
+            </a>
+
+            <!-- Product Details -->
+            <div class="p-3 flex flex-col flex-1">
+              <a href="/shop/item/<%= item.id %>" class="block">
+                <h3 class="text-white font-semibold text-xs leading-snug hover:text-brand-400 transition-colors mb-1 line-clamp-2"><%= item.name %></h3>
+              </a>
+
+              <!-- Price -->
+              <div class="price-tag text-base font-bold mb-2">
+                <%= data.settings.currencySymbol %> <%= item.price.toLocaleString() %>
+              </div>
+
+              <!-- Stock Status (Compact) -->
+              <div class="mb-2">
+                <% if (item.type === 'service') { %>
+                  <span class="badge bg-purple-950 text-purple-400 px-2 py-0.5 rounded-lg text-xs">🔧 Service</span>
+                <% } else if (item.stock === 0) { %>
+                  <span class="badge bg-red-950 text-red-400 px-2 py-0.5 rounded-lg text-xs">Out of Stock</span>
+                <% } else if (item.stock <= 3) { %>
+                  <span class="badge bg-orange-950 text-orange-400 px-2 py-0.5 rounded-lg text-xs animate-pulse">🔥 Only <%= item.stock %> left</span>
+                <% } else { %>
+                  <span class="badge bg-green-950 text-green-400 px-2 py-0.5 rounded-lg text-xs">In Stock</span>
+                <% } %>
+              </div>
+
+              <!-- WhatsApp & Call Buttons -->
+              <div class="mt-auto grid grid-cols-2 gap-1">
+                <a href="tel:+254759697878"
+                   class="bg-blue-600 hover:bg-blue-700 text-white text-center py-1.5 rounded-lg text-xs font-medium transition-all">
+                  📞 Call
+                </a>
+                <a href="https://wa.me/254759697878?text=Hello%2C%20I'm%20interested%20in%20<%= encodeURIComponent(item.name) %>%20-%20<%= data.settings.currencySymbol %><%= item.price.toLocaleString() %>"
+                   target="_blank"
+                   class="bg-green-600 hover:bg-green-700 text-white text-center py-1.5 rounded-lg text-xs font-medium transition-all">
+                  💬 WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  <% } %>
+
+  <!-- Pagination -->
+  <% if (pagination && pagination.totalPages > 1) { %>
+    <div class="flex flex-col items-center gap-3 mt-8 pt-4 border-t border-blue-900/30">
+      <div class="text-xs text-slate-500">
+        Showing <%= (pagination.currentPage - 1) * pagination.itemsPerPage + 1 %>
+        - <%= Math.min(pagination.currentPage * pagination.itemsPerPage, pagination.totalItems) %>
+        of <%= pagination.totalItems %> products
+      </div>
+      <div class="flex items-center gap-1 flex-wrap">
+        <% if (pagination.hasPrev) { %>
+          <a href="?<%= new URLSearchParams({ ...filters, page: pagination.prevPage }).toString() %>"
+             class="px-3 py-1.5 rounded-lg bg-blue-900/50 hover:bg-blue-800 text-white text-xs transition-all">
+            ← Prev
+          </a>
+        <% } else { %>
+          <span class="px-3 py-1.5 rounded-lg bg-slate-800/50 text-slate-600 text-xs cursor-not-allowed">← Prev</span>
+        <% } %>
+
+        <span class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-xs font-bold">
+          <%= pagination.currentPage %> / <%= pagination.totalPages %>
+        </span>
+
+        <% if (pagination.hasNext) { %>
+          <a href="?<%= new URLSearchParams({ ...filters, page: pagination.nextPage }).toString() %>"
+             class="px-3 py-1.5 rounded-lg bg-blue-900/50 hover:bg-blue-800 text-white text-xs transition-all">
+            Next →
+          </a>
+        <% } else { %>
+          <span class="px-3 py-1.5 rounded-lg bg-slate-800/50 text-slate-600 text-xs cursor-not-allowed">Next →</span>
+        <% } %>
+      </div>
+    </div>
+  <% } %>
+</main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer class="border-t section-divider py-8 px-6 text-center">
+  <p class="text-slate-700 text-sm"><%= data.settings.shopName %> · All prices in <%= data.settings.currency %></p>
+
+  <!-- Analytics Counter -->
+  <p class="text-xs text-slate-600 mt-3">
+    👁️ <%= totalViews || 0 %> total views · 👤 <%= uniqueVisitors || 0 %> unique visitors
+  </p>
+</footer>
+</body>
+</html>

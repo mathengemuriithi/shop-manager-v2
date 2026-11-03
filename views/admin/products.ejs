@@ -1,0 +1,134 @@
+<%- include('../partials/layout-top', { title: 'Products & Services', data, username, messages }) %>
+
+<!-- ── TOOLBAR ──────────────────────────────────────────────────────────── -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+  <form method="GET" action="/admin/products" class="flex flex-wrap gap-3 flex-1">
+    <input
+      type="text" name="search" value="<%= filters.search || '' %>"
+      placeholder="🔍  Search by name or SKU…"
+      class="input-field px-4 py-2.5 rounded-xl text-sm w-full sm:w-64"
+    />
+    <select name="category" class="input-field px-3 py-2.5 rounded-xl text-sm">
+      <option value="">All Categories</option>
+      <% data.categories.forEach(cat => { %>
+        <option value="<%= cat.id %>" <%= filters.category === cat.id ? 'selected' : '' %>><%= cat.icon %> <%= cat.name %></option>
+      <% }) %>
+    </select>
+    <select name="type" class="input-field px-3 py-2.5 rounded-xl text-sm">
+      <option value="">All Types</option>
+      <option value="product" <%= filters.type === 'product' ? 'selected' : '' %>>📦 Products</option>
+      <option value="service" <%= filters.type === 'service' ? 'selected' : '' %>>🔧 Services</option>
+    </select>
+    <button type="submit" class="btn-primary px-5 py-2.5 rounded-xl text-white text-sm font-medium">Filter</button>
+    <% if (filters.search || filters.category || filters.type) { %>
+      <a href="/admin/products" class="px-4 py-2.5 rounded-xl text-sm text-slate-400 hover:text-white transition-colors" style="background:rgba(255,255,255,0.04);">✕ Clear</a>
+    <% } %>
+  </form>
+  <a href="/admin/products/add" class="btn-primary px-5 py-2.5 rounded-xl text-white text-sm font-semibold whitespace-nowrap flex-shrink-0">
+    ➕ Add Item
+  </a>
+</div>
+
+<!-- ── RESULTS COUNT ────────────────────────────────────────────────────── -->
+<div class="flex items-center gap-2 mb-4">
+  <span class="text-xs text-slate-600"><%= items.length %> item<%= items.length !== 1 ? 's' : '' %> found</span>
+</div>
+
+<!-- ── TABLE ─────────────────────────────────────────────────────────────── -->
+<div class="card card-glow rounded-xl overflow-hidden">
+  <% if (items.length === 0) { %>
+    <div class="text-center py-16">
+      <div class="text-4xl mb-4">📭</div>
+      <p class="text-slate-500 text-sm mb-4">No items found.</p>
+      <a href="/admin/products/add" class="btn-primary inline-block px-6 py-2.5 rounded-xl text-white text-sm font-medium">Add your first item</a>
+    </div>
+  <% } else { %>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(56,189,248,0.08);background:rgba(56,189,248,0.03);">
+          <th class="px-6 py-3.5 text-left text-xs text-slate-600 uppercase tracking-wide">Item</th>
+          <th class="px-4 py-3.5 text-left text-xs text-slate-600 uppercase tracking-wide">Category</th>
+          <th class="px-4 py-3.5 text-left text-xs text-slate-600 uppercase tracking-wide">Type</th>
+          <th class="px-4 py-3.5 text-right text-xs text-slate-600 uppercase tracking-wide">Price</th>
+          <th class="px-4 py-3.5 text-center text-xs text-slate-600 uppercase tracking-wide">Stock</th>
+          <th class="px-6 py-3.5 text-right text-xs text-slate-600 uppercase tracking-wide">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach(item => { %>
+          <% const cat = data.categories.find(c => c.id === item.categoryId); %>
+          <tr class="table-row border-b" style="border-color:rgba(56,189,248,0.04);">
+            <!-- Name + Image -->
+            <td class="px-6 py-3.5">
+              <div class="flex items-center gap-4">
+                <% if (item.image) { %>
+                  <img src="<%= item.image %>" class="w-10 h-10 rounded-lg object-cover flex-shrink-0" style="border:1px solid rgba(56,189,248,0.15);" />
+                <% } else { %>
+                  <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.1);">
+                    <%= item.type === 'service' ? '🔧' : '📦' %>
+                  </div>
+                <% } %>
+                <div>
+                  <div class="text-white font-medium leading-snug"><%= item.name %></div>
+                  <% if (item.sku) { %>
+                    <div class="text-xs font-mono text-slate-600 mt-0.5"><%= item.sku %></div>
+                  <% } %>
+                  <% if (item.description) { %>
+                    <div class="text-xs text-slate-600 mt-0.5 max-w-xs truncate"><%= item.description %></div>
+                  <% } %>
+                </div>
+              </div>
+            </td>
+            <!-- Category -->
+            <td class="px-4 py-3.5 text-slate-400 text-xs whitespace-nowrap">
+              <%= cat ? cat.icon + ' ' + cat.name : '—' %>
+            </td>
+            <!-- Type -->
+            <td class="px-4 py-3.5">
+              <% if (item.type === 'service') { %>
+                <span class="badge bg-purple-950 text-purple-400 px-2 py-0.5 rounded-md">Service</span>
+              <% } else { %>
+                <span class="badge bg-blue-950 text-brand-400 px-2 py-0.5 rounded-md">Product</span>
+              <% } %>
+            </td>
+            <!-- Price -->
+            <td class="px-4 py-3.5 text-right font-mono text-brand-400 whitespace-nowrap">
+              <%= data.settings.currencySymbol %> <%= item.price.toLocaleString() %>
+            </td>
+            <!-- Stock -->
+            <td class="px-4 py-3.5 text-center">
+              <% if (item.type === 'service') { %>
+                <span class="text-xs text-slate-600">N/A</span>
+              <% } else if (item.stock === 0) { %>
+                <span class="badge bg-red-950 text-red-400 px-2 py-0.5 rounded-md">Out of Stock</span>
+              <% } else if (item.stock <= 3) { %>
+                <span class="badge bg-yellow-950 text-yellow-400 px-2 py-0.5 rounded-md"><%= item.stock %> left ⚠️</span>
+              <% } else { %>
+                <span class="badge bg-green-950 text-green-400 px-2 py-0.5 rounded-md"><%= item.stock %> in stock</span>
+              <% } %>
+            </td>
+            <!-- Actions -->
+            <td class="px-6 py-3.5">
+              <div class="flex items-center justify-end gap-2">
+                <a href="/admin/products/edit/<%= item.id %>"
+                   class="px-3 py-1.5 rounded-lg text-xs font-medium text-brand-400 hover:bg-blue-950 transition-colors border border-brand-900">
+                  ✏️ Edit
+                </a>
+                <form method="POST" action="/admin/products/delete/<%= item.id %>"
+                      onsubmit="return confirm('Delete <%= item.name %>? This cannot be undone.')">
+                  <button type="submit" class="btn-danger px-3 py-1.5 rounded-lg text-xs font-medium">
+                    🗑️ Delete
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</div>
+
+<%- include('../partials/layout-bottom') %>

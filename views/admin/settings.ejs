@@ -1,0 +1,75 @@
+<%- include('../partials/layout-top', { title: 'Settings', data, username, messages }) %>
+
+<div class="max-w-xl">
+  <div class="card card-glow rounded-xl overflow-hidden">
+    <div class="px-8 py-5 border-b" style="border-color:rgba(56,189,248,0.08);">
+      <h2 class="font-semibold text-white">⚙️ Shop Settings</h2>
+      <p class="text-xs text-slate-600 mt-1">General configuration for your shop</p>
+    </div>
+
+    <form method="POST" action="/admin/settings" class="px-8 py-7 space-y-6">
+
+      <div>
+        <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Shop Name *</label>
+        <input
+          type="text" name="shopName" required
+          value="<%= data.settings.shopName || '' %>"
+          placeholder="My Computer Shop"
+          class="input-field w-full px-4 py-3 rounded-xl text-sm"
+        />
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Currency Code</label>
+          <input
+            type="text" name="currency" maxlength="5"
+            value="<%= data.settings.currency || 'KES' %>"
+            placeholder="KES"
+            class="input-field w-full px-4 py-3 rounded-xl text-sm font-mono"
+          />
+          <p class="text-xs text-slate-600 mt-1">e.g. KES, USD, GBP</p>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide mb-2">Currency Symbol</label>
+          <input
+            type="text" name="currencySymbol" maxlength="5"
+            value="<%= data.settings.currencySymbol || 'KSh' %>"
+            placeholder="KSh"
+            class="input-field w-full px-4 py-3 rounded-xl text-sm font-mono"
+          />
+          <p class="text-xs text-slate-600 mt-1">e.g. KSh, $, £</p>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t" style="border-color:rgba(56,189,248,0.08);">
+        <button type="submit" class="btn-primary px-8 py-3 rounded-xl text-white font-semibold text-sm">
+          💾 Save Settings
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Credentials Note -->
+  <div class="mt-5 px-6 py-5 rounded-xl" style="background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.15);">
+    <h3 class="text-yellow-400 text-sm font-semibold mb-2">🔑 Admin Credentials</h3>
+    <p class="text-xs text-slate-500 leading-relaxed">
+      Login credentials are stored in <code class="font-mono text-yellow-400 bg-yellow-950 px-1 py-0.5 rounded">routes/auth.js</code>.
+      Edit <code class="font-mono text-yellow-400 bg-yellow-950 px-1 py-0.5 rounded">ADMIN_USERNAME</code> and
+      <code class="font-mono text-yellow-400 bg-yellow-950 px-1 py-0.5 rounded">ADMIN_PASSWORD</code> before deploying to a live server.
+      Use environment variables for production security.
+    </p>
+  </div>
+
+  <!-- Data Note -->
+  <div class="mt-4 px-6 py-5 rounded-xl" style="background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.08);">
+    <h3 class="text-brand-400 text-sm font-semibold mb-2">💾 Data Storage</h3>
+    <p class="text-xs text-slate-500 leading-relaxed">
+      All data is stored in <code class="font-mono text-brand-400 bg-blue-950 px-1 py-0.5 rounded">data/data.json</code>.
+      Back up this file regularly. Uploaded images are stored in
+      <code class="font-mono text-brand-400 bg-blue-950 px-1 py-0.5 rounded">public/uploads/</code>.
+    </p>
+  </div>
+</div>
+
+<%- include('../partials/layout-bottom') %>
